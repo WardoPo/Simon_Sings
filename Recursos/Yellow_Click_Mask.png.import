@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/Yellow_Click_Mask.png-be3398c7aebfb7ad4a12e2c5ca7510e9.res"
+
+[deps]
+
+source_file="res://Recursos/Yellow_Click_Mask.png"
+dest_files=[ "res://.import/Yellow_Click_Mask.png-be3398c7aebfb7ad4a12e2c5ca7510e9.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

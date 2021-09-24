@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/Red_Click_Mask.png-9d74b3cd384e9c5955b1d67e2f98901f.res"
+
+[deps]
+
+source_file="res://Recursos/Red_Click_Mask.png"
+dest_files=[ "res://.import/Red_Click_Mask.png-9d74b3cd384e9c5955b1d67e2f98901f.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

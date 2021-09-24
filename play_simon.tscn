@@ -1,0 +1,92 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://play_simon.gd" type="Script" id=1]
+[ext_resource path="res://Recursos/sprite_01.png" type="Texture" id=2]
+[ext_resource path="res://Recursos/sprite_02.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/Red_Click_Mask.png" type="BitMap" id=4]
+[ext_resource path="res://Recursos/Yellow_Pressed_Down.png" type="Texture" id=5]
+[ext_resource path="res://Recursos/Yellow.png" type="Texture" id=6]
+[ext_resource path="res://Recursos/Green_Click_Mask.png" type="BitMap" id=7]
+[ext_resource path="res://Recursos/Yellow_Click_Mask.png" type="BitMap" id=8]
+[ext_resource path="res://Recursos/Blue_Click_Mask.png" type="BitMap" id=9]
+[ext_resource path="res://Recursos/Green.png" type="Texture" id=10]
+[ext_resource path="res://Recursos/Blue_Pressed_Down.png" type="Texture" id=11]
+[ext_resource path="res://Recursos/Blue.png" type="Texture" id=12]
+[ext_resource path="res://Recursos/Green_Pressed_Down.png" type="Texture" id=13]
+[ext_resource path="res://Simon_Button.gd" type="Script" id=14]
+[ext_resource path="res://Recursos/Red_Light_Up.png" type="Texture" id=15]
+[ext_resource path="res://Recursos/Blue_Light_Up.png" type="Texture" id=16]
+[ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
+[ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = 2.11893
+margin_right = 599.0
+margin_bottom = 601.119
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red_Button" type="TextureButton" parent="Panel"]
+margin_left = 157.225
+margin_top = 44.3655
+margin_right = 432.225
+margin_bottom = 219.366
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_click_mask = ExtResource( 4 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+glow_texture = ExtResource( 15 )
+
+[node name="Yellow_Button" type="TextureButton" parent="Panel"]
+margin_left = 372.822
+margin_top = 146.195
+margin_right = 522.822
+margin_bottom = 446.195
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_click_mask = ExtResource( 8 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+glow_texture = ExtResource( 18 )
+
+[node name="Blue_Button" type="TextureButton" parent="Panel"]
+margin_left = 152.563
+margin_top = 357.039
+margin_right = 427.563
+margin_bottom = 545.039
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 11 )
+texture_click_mask = ExtResource( 9 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+glow_texture = ExtResource( 16 )
+
+[node name="Green_Button" type="TextureButton" parent="Panel"]
+margin_left = 57.211
+margin_top = 140.909
+margin_right = 207.211
+margin_bottom = 440.909
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 13 )
+texture_click_mask = ExtResource( 7 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+glow_texture = ExtResource( 17 )
+
+[connection signal="pressed" from="Panel/Red_Button" to="Panel" method="_on_Red_Button_pressed"]
+[connection signal="pressed" from="Panel/Yellow_Button" to="Panel" method="_on_Yellow_Button_pressed"]
+[connection signal="pressed" from="Panel/Blue_Button" to="Panel" method="_on_Blue_Button_pressed"]
+[connection signal="pressed" from="Panel/Green_Button" to="Panel" method="_on_Green_Button_pressed"]
