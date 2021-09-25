@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
-[ext_resource path="res://Recursos/Red.png" type="Texture" id=2]
+[ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
+[ext_resource path="res://Recursos/Audio/simon-says-blue.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Recursos/Red_Click_Mask.png" type="BitMap" id=4]
 [ext_resource path="res://Recursos/Yellow_Pressed_Down.png" type="Texture" id=5]
 [ext_resource path="res://Recursos/Yellow.png" type="Texture" id=6]
@@ -17,7 +18,18 @@
 [ext_resource path="res://Recursos/Blue_Light_Up.png" type="Texture" id=16]
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
-[ext_resource path="res://bell.mp3" type="AudioStream" id=19]
+[ext_resource path="res://Recursos/Audio/simon-says-green.mp3" type="AudioStream" id=19]
+[ext_resource path="res://win.mp3" type="AudioStream" id=20]
+[ext_resource path="res://wrong.mp3" type="AudioStream" id=21]
+[ext_resource path="res://Recursos/Wrong/Yellow_Wrong.png" type="Texture" id=22]
+[ext_resource path="res://Recursos/Wrong/Green_Wrong_Light.png" type="Texture" id=23]
+[ext_resource path="res://Recursos/Wrong/Yellow_Wrong_Light.png" type="Texture" id=24]
+[ext_resource path="res://Recursos/Wrong/Blue_Wrong_Light.png" type="Texture" id=25]
+[ext_resource path="res://Recursos/Red.png" type="Texture" id=26]
+[ext_resource path="res://Recursos/Wrong/Green_Wrong.png" type="Texture" id=27]
+[ext_resource path="res://Recursos/Wrong/Blue_Wrong.png" type="Texture" id=28]
+[ext_resource path="res://Recursos/Audio/simon-says-red.mp3" type="AudioStream" id=29]
+[ext_resource path="res://Recursos/Audio/simon-says-yellow.mp3" type="AudioStream" id=30]
 
 [node name="Node2D" type="Node2D"]
 
@@ -29,13 +41,16 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+winTone = ExtResource( 20 )
+loseTone = ExtResource( 21 )
 
 [node name="Red_Button" type="TextureButton" parent="Panel"]
 margin_left = 157.225
 margin_top = 44.3655
 margin_right = 432.225
 margin_bottom = 219.366
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 2 )
 texture_click_mask = ExtResource( 4 )
 script = ExtResource( 14 )
 __meta__ = {
@@ -43,7 +58,9 @@ __meta__ = {
 }
 id = "Red"
 glow_texture = ExtResource( 15 )
-sound = ExtResource( 19 )
+wrong_texture = ExtResource( 26 )
+glow_wrong_texture = ExtResource( 15 )
+sound = ExtResource( 29 )
 
 [node name="Yellow_Button" type="TextureButton" parent="Panel"]
 margin_left = 372.822
@@ -59,7 +76,9 @@ __meta__ = {
 }
 id = "Yellow"
 glow_texture = ExtResource( 18 )
-sound = ExtResource( 19 )
+wrong_texture = ExtResource( 22 )
+glow_wrong_texture = ExtResource( 24 )
+sound = ExtResource( 30 )
 
 [node name="Blue_Button" type="TextureButton" parent="Panel"]
 margin_left = 152.563
@@ -75,7 +94,9 @@ __meta__ = {
 }
 id = "Blue"
 glow_texture = ExtResource( 16 )
-sound = ExtResource( 19 )
+wrong_texture = ExtResource( 28 )
+glow_wrong_texture = ExtResource( 25 )
+sound = ExtResource( 3 )
 
 [node name="Green_Button" type="TextureButton" parent="Panel"]
 margin_left = 57.211
@@ -91,6 +112,8 @@ __meta__ = {
 }
 id = "Green"
 glow_texture = ExtResource( 17 )
+wrong_texture = ExtResource( 27 )
+glow_wrong_texture = ExtResource( 23 )
 sound = ExtResource( 19 )
 
 [connection signal="hit" from="Panel/Red_Button" to="Panel" method="_on_button_hit"]

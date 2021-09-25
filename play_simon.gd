@@ -22,18 +22,23 @@ var feedbackBus = AudioServer.get_bus_index("Tones");
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(feedbackPlayer)
-	
-	randomize();
 	colorOrder = [];
+	_create_game();
+	#get_node("TextureButton").connect("button_down",self,"_on_TextureButton_button_down");
+
+func _create_game():
+	colorOrder = [];
+	randomize();
 	for m in max_levels:
 		colorOrder.append(colors[randi()%4])
 	_start_level(1)
-	#get_node("TextureButton").connect("button_down",self,"_on_TextureButton_button_down");
 
 func _start_level(level):
-	current_level = level
 	pressedOrder = []
-	_show_level(level)
+	
+	current_level = level
+	_show_level(current_level)
+		
 	print("Color Order:",colorOrder)
 
 func _show_level(level):
@@ -49,10 +54,6 @@ func _show_level(level):
 				yield($Green_Button.glow(),"completed")
 		print(colorOrder[m])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func _check():
 	print("PressedOrder:",pressedOrder)
 	var current_index = pressedOrder.size()-1
@@ -67,11 +68,21 @@ func _lose():
 	yield(get_tree().create_timer(0.5), "timeout")
 	feedbackPlayer.stream = loseTone;
 	feedbackPlayer.play()
+	$Red_Button.set_wrong(true)
+	$Yellow_Button.set_wrong(true)
+	$Blue_Button.set_wrong(true)
+	$Green_Button.set_wrong(true)
+	yield($Green_Button.set_wrong(true),"completed")
 	yield(feedbackPlayer,"finished")
-	_start_level(0)
+	$Red_Button.set_wrong(false)
+	$Yellow_Button.set_wrong(false)
+	$Blue_Button.set_wrong(false)
+	$Green_Button.set_wrong(false)
+	yield(get_tree().create_timer(0.5), "timeout")
+	_create_game()
 	
 func _win():
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.75), "timeout")
 	$Red_Button.set_glow(true)
 	$Yellow_Button.set_glow(true)
 	$Blue_Button.set_glow(true)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/simon-says-yellow.mp3-961e6e2da43024e0b7ad6b0af0e43ae6.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Audio/simon-says-yellow.mp3"
+dest_files=[ "res://.import/simon-says-yellow.mp3-961e6e2da43024e0b7ad6b0af0e43ae6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

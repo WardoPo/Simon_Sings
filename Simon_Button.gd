@@ -5,6 +5,9 @@ export var id : String
 export var glow_texture : Texture
 var old_normal_texture = texture_normal
 
+export var wrong_texture : Texture
+export var glow_wrong_texture : Texture
+
 export var sound : AudioStream
 var audio_player = AudioStreamPlayer.new()
 
@@ -28,6 +31,17 @@ func set_glow(enable):
 	if(enable):
 		texture_normal = glow_texture
 	else:
+		texture_normal = old_normal_texture
+
+func set_wrong(forward):
+	if(forward):
+		texture_normal = wrong_texture;
+		yield(get_tree().create_timer(0.25), "timeout")
+		texture_normal = glow_wrong_texture;
+	else:
+		yield(get_tree().create_timer(0.25), "timeout")
+		texture_normal = wrong_texture;
+		yield(get_tree().create_timer(0.5), "timeout")
 		texture_normal = old_normal_texture
 
 func _on_pressed():
