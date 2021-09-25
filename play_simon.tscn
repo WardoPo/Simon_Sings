@@ -19,8 +19,8 @@
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
 [ext_resource path="res://Recursos/Audio/simon-says-green.mp3" type="AudioStream" id=19]
-[ext_resource path="res://win.mp3" type="AudioStream" id=20]
-[ext_resource path="res://wrong.mp3" type="AudioStream" id=21]
+[ext_resource path="res://Recursos/Audio/win.mp3" type="AudioStream" id=20]
+[ext_resource path="res://Recursos/Audio/wrong.mp3" type="AudioStream" id=21]
 [ext_resource path="res://Recursos/Wrong/Yellow_Wrong.png" type="Texture" id=22]
 [ext_resource path="res://Recursos/Wrong/Green_Wrong_Light.png" type="Texture" id=23]
 [ext_resource path="res://Recursos/Wrong/Yellow_Wrong_Light.png" type="Texture" id=24]
@@ -31,12 +31,9 @@
 [ext_resource path="res://Recursos/Audio/simon-says-red.mp3" type="AudioStream" id=29]
 [ext_resource path="res://Recursos/Audio/simon-says-yellow.mp3" type="AudioStream" id=30]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Panel" type="Panel" parent="."]
-margin_top = 2.11893
-margin_right = 599.0
-margin_bottom = 601.119
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,68 +41,27 @@ __meta__ = {
 winTone = ExtResource( 20 )
 loseTone = ExtResource( 21 )
 
-[node name="Red_Button" type="TextureButton" parent="Panel"]
-margin_left = 157.225
-margin_top = 44.3655
-margin_right = 432.225
-margin_bottom = 219.366
-texture_normal = ExtResource( 26 )
-texture_pressed = ExtResource( 2 )
-texture_click_mask = ExtResource( 4 )
-script = ExtResource( 14 )
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
-id = "Red"
-glow_texture = ExtResource( 15 )
-wrong_texture = ExtResource( 26 )
-glow_wrong_texture = ExtResource( 15 )
-sound = ExtResource( 29 )
 
-[node name="Yellow_Button" type="TextureButton" parent="Panel"]
-margin_left = 372.822
-margin_top = 146.195
-margin_right = 522.822
-margin_bottom = 446.195
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 5 )
-texture_click_mask = ExtResource( 8 )
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-id = "Yellow"
-glow_texture = ExtResource( 18 )
-wrong_texture = ExtResource( 22 )
-glow_wrong_texture = ExtResource( 24 )
-sound = ExtResource( 30 )
-
-[node name="Blue_Button" type="TextureButton" parent="Panel"]
-margin_left = 152.563
-margin_top = 357.039
-margin_right = 427.563
-margin_bottom = 545.039
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 11 )
-texture_click_mask = ExtResource( 9 )
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-id = "Blue"
-glow_texture = ExtResource( 16 )
-wrong_texture = ExtResource( 28 )
-glow_wrong_texture = ExtResource( 25 )
-sound = ExtResource( 3 )
-
-[node name="Green_Button" type="TextureButton" parent="Panel"]
-margin_left = 57.211
-margin_top = 140.909
-margin_right = 207.211
-margin_bottom = 440.909
+[node name="Green_Button" type="TextureButton" parent="HBoxContainer" groups=[
+"Buttons",
+]]
+margin_right = 338.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource( 10 )
 texture_pressed = ExtResource( 13 )
 texture_click_mask = ExtResource( 7 )
+expand = true
+stretch_mode = 5
 script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,7 +72,82 @@ wrong_texture = ExtResource( 27 )
 glow_wrong_texture = ExtResource( 23 )
 sound = ExtResource( 19 )
 
-[connection signal="hit" from="Panel/Red_Button" to="Panel" method="_on_button_hit"]
-[connection signal="hit" from="Panel/Yellow_Button" to="Panel" method="_on_button_hit"]
-[connection signal="hit" from="Panel/Blue_Button" to="Panel" method="_on_button_hit"]
-[connection signal="hit" from="Panel/Green_Button" to="Panel" method="_on_button_hit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Red_Button" type="TextureButton" parent="HBoxContainer/VBoxContainer" groups=[
+"Buttons",
+]]
+margin_right = 339.0
+margin_bottom = 358.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 2 )
+texture_click_mask = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+id = "Red"
+glow_texture = ExtResource( 15 )
+wrong_texture = ExtResource( 26 )
+glow_wrong_texture = ExtResource( 15 )
+sound = ExtResource( 29 )
+
+[node name="Blue_Button" type="TextureButton" parent="HBoxContainer/VBoxContainer" groups=[
+"Buttons",
+]]
+margin_top = 362.0
+margin_right = 339.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 11 )
+texture_click_mask = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+id = "Blue"
+glow_texture = ExtResource( 16 )
+wrong_texture = ExtResource( 28 )
+glow_wrong_texture = ExtResource( 25 )
+sound = ExtResource( 3 )
+
+[node name="Yellow_Button" type="TextureButton" parent="HBoxContainer" groups=[
+"Buttons",
+]]
+margin_left = 685.0
+margin_right = 1024.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_click_mask = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+id = "Yellow"
+glow_texture = ExtResource( 18 )
+wrong_texture = ExtResource( 22 )
+glow_wrong_texture = ExtResource( 24 )
+sound = ExtResource( 30 )
+
+[connection signal="hit" from="HBoxContainer/Green_Button" to="." method="_on_button_hit"]
+[connection signal="hit" from="HBoxContainer/VBoxContainer/Red_Button" to="." method="_on_button_hit"]
+[connection signal="hit" from="HBoxContainer/VBoxContainer/Blue_Button" to="." method="_on_button_hit"]
+[connection signal="hit" from="HBoxContainer/Yellow_Button" to="." method="_on_button_hit"]

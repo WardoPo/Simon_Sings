@@ -20,12 +20,17 @@ func _ready():
 	add_child(audio_player)
 	connect("pressed",self,"_on_pressed")
 
-func glow():
+func disable(disabled):
+	disabled = disabled
+
+func glow(target):
+	if(target != id):
+		return
 	audio_player.play()
 	set_glow(true)
 	yield(audio_player,"finished")
 	set_glow(false)
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.25), "timeout")
 
 func set_glow(enable):
 	if(enable):

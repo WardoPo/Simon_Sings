@@ -1,4 +1,4 @@
-extends Panel
+extends Node
 
 var max_levels = 20
 var current_level = 0
@@ -16,9 +16,6 @@ export var loseTone : AudioStream;
 
 var feedbackPlayer = AudioStreamPlayer.new();
 
-var tonesBus = AudioServer.get_bus_index("Tones");
-var feedbackBus = AudioServer.get_bus_index("Tones");
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(feedbackPlayer)
@@ -35,24 +32,17 @@ func _create_game():
 
 func _start_level(level):
 	pressedOrder = []
-	
 	current_level = level
 	_show_level(current_level)
 		
 	print("Color Order:",colorOrder)
 
 func _show_level(level):
+	get_tree().call_group("Buttons","disable",true)
 	for m in level:
-		match colorOrder[m]:
-			"Red":
-				yield($Red_Button.glow(),"completed")
-			"Yellow":
-				yield($Yellow_Button.glow(),"completed")
-			"Blue":
-				yield($Blue_Button.glow(),"completed")
-			"Green":
-				yield($Green_Button.glow(),"completed")
+		get_tree().call_group("Buttons","glow",colorOrder[m])
 		print(colorOrder[m])
+	get_tree().call_group("Buttons","disable",false)
 
 func _check():
 	print("PressedOrder:",pressedOrder)
@@ -65,35 +55,24 @@ func _check():
 		_win()
 		
 func _lose():
+	get_tree().call_group("Buttons","disable",true)
 	yield(get_tree().create_timer(0.5), "timeout")
 	feedbackPlayer.stream = loseTone;
 	feedbackPlayer.play()
-	$Red_Button.set_wrong(true)
-	$Yellow_Button.set_wrong(true)
-	$Blue_Button.set_wrong(true)
-	$Green_Button.set_wrong(true)
-	yield($Green_Button.set_wrong(true),"completed")
-	yield(feedbackPlayer,"finished")
-	$Red_Button.set_wrong(false)
-	$Yellow_Button.set_wrong(false)
-	$Blue_Button.set_wrong(false)
-	$Green_Button.set_wrong(false)
-	yield(get_tree().create_timer(0.5), "timeout")
+	get_tree().call_group("Buttons","set_wrong",true)
+	if(feedbackPlayer.playing):
+		yield(feedbackPlayer,"finished")
+	get_tree().call_group("Buttons","set_wrong",false)
 	_create_game()
-	
+
 func _win():
+	get_tree().call_group("Buttons","disable",true)
 	yield(get_tree().create_timer(0.75), "timeout")
-	$Red_Button.set_glow(true)
-	$Yellow_Button.set_glow(true)
-	$Blue_Button.set_glow(true)
-	$Green_Button.set_glow(true)
+	get_tree().call_group("Buttons","set_glow",true)
 	feedbackPlayer.stream = winTone;
 	feedbackPlayer.play()
 	yield(feedbackPlayer,"finished")
-	$Red_Button.set_glow(false)
-	$Yellow_Button.set_glow(false)
-	$Blue_Button.set_glow(false)
-	$Green_Button.set_glow(false)
+	get_tree().call_group("Buttons","set_glow",false)
 	yield(get_tree().create_timer(0.5), "timeout")
 	_start_level(current_level + 1)
 
