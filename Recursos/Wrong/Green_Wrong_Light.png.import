@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_04.png-c491b5272cfdcd46cd6afc4e755df1b8.stex"
+path="res://.import/Green_Wrong_Light.png-0cc571c6ac0ff6645f910c6bbd7d7ddd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Recursos/sprite_04.png"
-dest_files=[ "res://.import/sprite_04.png-c491b5272cfdcd46cd6afc4e755df1b8.stex" ]
+source_file="res://Recursos/Wrong/Green_Wrong_Light.png"
+dest_files=[ "res://.import/Green_Wrong_Light.png-0cc571c6ac0ff6645f910c6bbd7d7ddd.stex" ]
 
 [params]
 
