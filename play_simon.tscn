@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/sprite_01.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Recursos/Blue_Light_Up.png" type="Texture" id=16]
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
+[ext_resource path="res://bell.mp3" type="AudioStream" id=19]
 
 [node name="Node2D" type="Node2D"]
 
@@ -42,7 +43,9 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+id = "Red"
 glow_texture = ExtResource( 15 )
+sound = ExtResource( 19 )
 
 [node name="Yellow_Button" type="TextureButton" parent="Panel"]
 margin_left = 372.822
@@ -56,7 +59,9 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+id = "Yellow"
 glow_texture = ExtResource( 18 )
+sound = ExtResource( 19 )
 
 [node name="Blue_Button" type="TextureButton" parent="Panel"]
 margin_left = 152.563
@@ -70,7 +75,9 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+id = "Blue"
 glow_texture = ExtResource( 16 )
+sound = ExtResource( 19 )
 
 [node name="Green_Button" type="TextureButton" parent="Panel"]
 margin_left = 57.211
@@ -84,9 +91,11 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+id = "Green"
 glow_texture = ExtResource( 17 )
+sound = ExtResource( 19 )
 
-[connection signal="pressed" from="Panel/Red_Button" to="Panel" method="_on_Red_Button_pressed"]
-[connection signal="pressed" from="Panel/Yellow_Button" to="Panel" method="_on_Yellow_Button_pressed"]
-[connection signal="pressed" from="Panel/Blue_Button" to="Panel" method="_on_Blue_Button_pressed"]
-[connection signal="pressed" from="Panel/Green_Button" to="Panel" method="_on_Green_Button_pressed"]
+[connection signal="hit" from="Panel/Red_Button" to="Panel" method="_on_button_hit"]
+[connection signal="hit" from="Panel/Yellow_Button" to="Panel" method="_on_button_hit"]
+[connection signal="hit" from="Panel/Blue_Button" to="Panel" method="_on_button_hit"]
+[connection signal="hit" from="Panel/Green_Button" to="Panel" method="_on_button_hit"]
