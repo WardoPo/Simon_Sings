@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
-[ext_resource path="res://Recursos/sprite_01.png" type="Texture" id=2]
-[ext_resource path="res://Recursos/sprite_02.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/Red.png" type="Texture" id=2]
 [ext_resource path="res://Recursos/Red_Click_Mask.png" type="BitMap" id=4]
 [ext_resource path="res://Recursos/Yellow_Pressed_Down.png" type="Texture" id=5]
 [ext_resource path="res://Recursos/Yellow.png" type="Texture" id=6]
@@ -19,8 +18,6 @@
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
 [ext_resource path="res://bell.mp3" type="AudioStream" id=19]
-[ext_resource path="res://win.mp3" type="AudioStream" id=20]
-[ext_resource path="res://wrong.mp3" type="AudioStream" id=21]
 
 [node name="Node2D" type="Node2D"]
 
@@ -32,8 +29,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-winTone = ExtResource( 20 )
-loseTone = ExtResource( 21 )
 
 [node name="Red_Button" type="TextureButton" parent="Panel"]
 margin_left = 157.225
@@ -41,7 +36,6 @@ margin_top = 44.3655
 margin_right = 432.225
 margin_bottom = 219.366
 texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 3 )
 texture_click_mask = ExtResource( 4 )
 script = ExtResource( 14 )
 __meta__ = {

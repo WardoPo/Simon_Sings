@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_10.png-b7686e6d056c7939436cce74c2f16644.stex"
+path="res://.import/Blue_Wrong_Light.png-b88088076488c06a50a6e7858f6b8394.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Recursos/sprite_10.png"
-dest_files=[ "res://.import/sprite_10.png-b7686e6d056c7939436cce74c2f16644.stex" ]
+source_file="res://Recursos/Wrong/Blue_Wrong_Light.png"
+dest_files=[ "res://.import/Blue_Wrong_Light.png-b88088076488c06a50a6e7858f6b8394.stex" ]
 
 [params]
 
