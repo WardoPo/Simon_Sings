@@ -12,16 +12,23 @@ signal hit(id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	audio_player.bus = "Tones"
 	audio_player.stream = sound;
 	add_child(audio_player)
 	connect("pressed",self,"_on_pressed")
 
 func glow():
 	audio_player.play()
-	texture_normal = glow_texture
+	set_glow(true)
 	yield(audio_player,"finished")
-	texture_normal = old_normal_texture
+	set_glow(false)
 	yield(get_tree().create_timer(0.5), "timeout")
+
+func set_glow(enable):
+	if(enable):
+		texture_normal = glow_texture
+	else:
+		texture_normal = old_normal_texture
 
 func _on_pressed():
 	emit_signal("hit", id)

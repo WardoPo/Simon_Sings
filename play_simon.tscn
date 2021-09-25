@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/sprite_01.png" type="Texture" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
 [ext_resource path="res://bell.mp3" type="AudioStream" id=19]
+[ext_resource path="res://win.mp3" type="AudioStream" id=20]
+[ext_resource path="res://wrong.mp3" type="AudioStream" id=21]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,6 +32,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+winTone = ExtResource( 20 )
+loseTone = ExtResource( 21 )
 
 [node name="Red_Button" type="TextureButton" parent="Panel"]
 margin_left = 157.225
