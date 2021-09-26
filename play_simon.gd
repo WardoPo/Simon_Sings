@@ -16,10 +16,18 @@ export var loseTone : AudioStream;
 
 var feedbackPlayer = AudioStreamPlayer.new();
 
+var RedButton;
+var YellowButton;
+var BlueButton;
+var GreenButton;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(feedbackPlayer)
-	colorOrder = [];
+	add_child(feedbackPlayer);
+	RedButton = find_node("RedButton");
+	YellowButton = find_node("YellowButton");
+	BlueButton = find_node("BlueButton");
+	GreenButton = find_node("GreenButton")
 	_create_game();
 	#get_node("TextureButton").connect("button_down",self,"_on_TextureButton_button_down");
 
@@ -38,11 +46,18 @@ func _start_level(level):
 	print("Color Order:",colorOrder)
 
 func _show_level(level):
-	get_tree().call_group("Buttons","disable",true)
+	_disable_all(true)
 	for m in level:
-		get_tree().call_group("Buttons","glow",colorOrder[m])
-		print(colorOrder[m])
-	get_tree().call_group("Buttons","disable",false)
+		match colorOrder[m]:
+			"Red":
+				yield(RedButton.glow(),"completed")
+			"Yellow":
+				yield(YellowButton.glow(),"completed")
+			"Blue":
+				yield(BlueButton.glow(),"completed")
+			"Green":
+				yield(GreenButton.glow(),"completed")
+	_disable_all(false)
 
 func _check():
 	print("PressedOrder:",pressedOrder)
@@ -55,26 +70,44 @@ func _check():
 		_win()
 		
 func _lose():
-	get_tree().call_group("Buttons","disable",true)
+	_disable_all(true)
 	yield(get_tree().create_timer(0.5), "timeout")
 	feedbackPlayer.stream = loseTone;
 	feedbackPlayer.play()
-	get_tree().call_group("Buttons","set_wrong",true)
+	yield(_set_wrong_all(true),"completed")
 	if(feedbackPlayer.playing):
 		yield(feedbackPlayer,"finished")
-	get_tree().call_group("Buttons","set_wrong",false)
+	yield(_set_wrong_all(false),"completed")
 	_create_game()
 
 func _win():
-	get_tree().call_group("Buttons","disable",true)
+	_disable_all(true)
 	yield(get_tree().create_timer(0.75), "timeout")
-	get_tree().call_group("Buttons","set_glow",true)
+	_set_glow_all(true)
 	feedbackPlayer.stream = winTone;
 	feedbackPlayer.play()
 	yield(feedbackPlayer,"finished")
-	get_tree().call_group("Buttons","set_glow",false)
+	_set_glow_all(false)
 	yield(get_tree().create_timer(0.5), "timeout")
 	_start_level(current_level + 1)
+
+func _disable_all(disabled):
+	RedButton.disabled = disabled
+	YellowButton.disabled = disabled
+	BlueButton.disabled = disabled
+	GreenButton.disabled = disabled
+	
+func _set_glow_all(enable):
+	RedButton.set_glow(enable)
+	YellowButton.set_glow(enable)
+	BlueButton.set_glow(enable)
+	GreenButton.set_glow(enable)
+
+func _set_wrong_all(forward):
+	RedButton.set_wrong(forward)
+	YellowButton.set_wrong(forward)
+	BlueButton.set_wrong(forward)
+	yield(GreenButton.set_wrong(forward),"completed")
 
 func _on_button_hit(id):
 	pressedOrder.append(id)

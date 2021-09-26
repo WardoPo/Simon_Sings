@@ -23,15 +23,13 @@ func _ready():
 func disable(disabled):
 	disabled = disabled
 
-func glow(target):
-	if(target != id):
-		return
+func glow():
 	audio_player.play()
 	set_glow(true)
 	yield(audio_player,"finished")
 	set_glow(false)
 	yield(get_tree().create_timer(0.25), "timeout")
-
+	
 func set_glow(enable):
 	if(enable):
 		texture_normal = glow_texture
