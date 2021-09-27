@@ -17,6 +17,8 @@ var has_won = false;
 var is_listening = false;
 var has_lost = false;
 
+export var countdownTime : float
+
 export var winTone : AudioStream;
 export var loseTone : AudioStream;
 
@@ -67,7 +69,7 @@ func _start_level(level):
 		notesOrder.append(notes_FrBg.keys()[randi()%8])
 	
 	_show_level(current_level)
-	$Timer.start(3.0)
+	$Timer.start(countdownTime)
 	print("Color Order:",colorOrder)
 
 func _show_level(level):
@@ -104,10 +106,10 @@ func _check():
 		is_listening = true
 		get_tree().call_group("Buttons", "countdown")
 		yield(RedButton,"idle")
-		_check_note()
+		#_check_note()
 		_disable_all(false)
 		is_listening = false
-		$Timer.start(3.0)
+		$Timer.start(countdownTime)
 		
 	if !has_lost && pressedOrder.size()==current_level:
 		_win()
@@ -120,24 +122,24 @@ func _check_note():
 
 func _lose():
 	_disable_all(true)
-	yield(get_tree().create_timer(0.5), "timeout")
 	feedbackPlayer.stream = loseTone;
-	feedbackPlayer.play()
-	yield(_set_wrong_all(true),"completed")
-	if(feedbackPlayer.playing):
-		yield(feedbackPlayer,"finished")
-	yield(_set_wrong_all(false),"completed")
+	
+	RedButton.wrong(feedbackPlayer)
+	YellowButton.wrong(feedbackPlayer)
+	BlueButton.wrong(feedbackPlayer)
+	yield(GreenButton.wrong(feedbackPlayer),"completed")
+	
 	_create_game()
 
 func _win():
 	_disable_all(true)
-	yield(get_tree().create_timer(0.75), "timeout")
-	_set_glow_all(true)
 	feedbackPlayer.stream = winTone;
-	feedbackPlayer.play()
-	yield(feedbackPlayer,"finished")
-	_set_glow_all(false)
-	yield(get_tree().create_timer(0.5), "timeout")
+	
+	RedButton.glow(feedbackPlayer)
+	YellowButton.glow(feedbackPlayer)
+	BlueButton.glow(feedbackPlayer)
+	yield(GreenButton.glow(feedbackPlayer),"completed")
+	
 	_start_level(current_level + 1)
 
 func _disable_all(disabled):
@@ -145,18 +147,6 @@ func _disable_all(disabled):
 	YellowButton.disabled = disabled
 	BlueButton.disabled = disabled
 	GreenButton.disabled = disabled
-	
-func _set_glow_all(enable):
-	RedButton.set_glow(enable)
-	YellowButton.set_glow(enable)
-	BlueButton.set_glow(enable)
-	GreenButton.set_glow(enable)
-
-func _set_wrong_all(forward):
-	RedButton.set_wrong(forward)
-	YellowButton.set_wrong(forward)
-	BlueButton.set_wrong(forward)
-	yield(GreenButton.set_wrong(forward),"completed")
 
 func _on_button_hit(id):
 	pressedOrder.append(id)

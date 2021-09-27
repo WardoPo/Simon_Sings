@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -21,13 +21,7 @@
 [ext_resource path="res://Recursos/Audio/simon-says-green.mp3" type="AudioStream" id=19]
 [ext_resource path="res://Recursos/Audio/win.mp3" type="AudioStream" id=20]
 [ext_resource path="res://Recursos/Audio/wrong.mp3" type="AudioStream" id=21]
-[ext_resource path="res://Recursos/Wrong/Yellow_Wrong.png" type="Texture" id=22]
-[ext_resource path="res://Recursos/Wrong/Green_Wrong_Light.png" type="Texture" id=23]
-[ext_resource path="res://Recursos/Wrong/Yellow_Wrong_Light.png" type="Texture" id=24]
-[ext_resource path="res://Recursos/Wrong/Blue_Wrong_Light.png" type="Texture" id=25]
 [ext_resource path="res://Recursos/Red.png" type="Texture" id=26]
-[ext_resource path="res://Recursos/Wrong/Green_Wrong.png" type="Texture" id=27]
-[ext_resource path="res://Recursos/Wrong/Blue_Wrong.png" type="Texture" id=28]
 [ext_resource path="res://Recursos/Audio/simon-says-red.mp3" type="AudioStream" id=29]
 [ext_resource path="res://Recursos/Audio/simon-says-yellow.mp3" type="AudioStream" id=30]
 [ext_resource path="res://Recursos/8-BIT WONDER.TTF" type="DynamicFontData" id=31]
@@ -66,6 +60,21 @@ animations = [ {
 "loop": false,
 "name": "countdown",
 "speed": 2.33
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "wrong_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -74,6 +83,16 @@ animations = [ {
 "loop": false,
 "name": "countdown",
 "speed": 2.33
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -82,6 +101,16 @@ animations = [ {
 "loop": false,
 "name": "countdown",
 "speed": 2.33
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -90,6 +119,16 @@ animations = [ {
 "loop": false,
 "name": "countdown",
 "speed": 2.33
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=5]
@@ -101,9 +140,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_horizontal_guides_": [ 539.205, 164.205 ],
 "_edit_use_anchors_": false,
-"_edit_vertical_guides_": [ -381.902 ]
+"_edit_vertical_guides_": [ -381.902, 410.5, 223.0 ]
 }
+countdownTime = 10.0
 winTone = ExtResource( 20 )
 loseTone = ExtResource( 21 )
 
@@ -155,9 +196,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 id = "Red"
-glow_texture = ExtResource( 15 )
-wrong_texture = ExtResource( 26 )
-glow_wrong_texture = ExtResource( 15 )
 sound = ExtResource( 29 )
 
 [node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/RedButton" groups=[
@@ -166,7 +204,7 @@ sound = ExtResource( 29 )
 visible = false
 position = Vector2( 137.245, 86.9018 )
 frames = SubResource( 1 )
-animation = "countdown"
+animation = "wrong_on"
 
 [node name="YellowButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -190,9 +228,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 id = "Yellow"
-glow_texture = ExtResource( 18 )
-wrong_texture = ExtResource( 22 )
-glow_wrong_texture = ExtResource( 24 )
 sound = ExtResource( 30 )
 
 [node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/YellowButton" groups=[
@@ -201,7 +236,7 @@ sound = ExtResource( 30 )
 visible = false
 position = Vector2( 75.0065, 150.164 )
 frames = SubResource( 2 )
-animation = "countdown"
+animation = "light_on"
 
 [node name="BlueButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -227,9 +262,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 id = "Blue"
-glow_texture = ExtResource( 16 )
-wrong_texture = ExtResource( 28 )
-glow_wrong_texture = ExtResource( 25 )
 sound = ExtResource( 3 )
 
 [node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/BlueButton" groups=[
@@ -238,7 +270,7 @@ sound = ExtResource( 3 )
 visible = false
 position = Vector2( 137.74, 92.9117 )
 frames = SubResource( 3 )
-animation = "countdown"
+animation = "light_on"
 
 [node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -262,18 +294,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 id = "Green"
-glow_texture = ExtResource( 17 )
-wrong_texture = ExtResource( 27 )
-glow_wrong_texture = ExtResource( 23 )
 sound = ExtResource( 19 )
 
 [node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/GreenButton" groups=[
 "Timer",
 ]]
 visible = false
-position = Vector2( 75.3873, 150.183 )
+position = Vector2( 75.1, 148.564 )
+scale = Vector2( 0.998667, 1 )
 frames = SubResource( 4 )
-animation = "countdown"
+animation = "light_on"
 
 [node name="Nota" type="Label" parent="."]
 anchor_left = 0.5

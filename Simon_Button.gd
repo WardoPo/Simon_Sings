@@ -2,12 +2,6 @@ extends TextureButton
 
 export var id : String
 
-export var glow_texture : Texture
-var old_normal_texture = texture_normal
-
-export var wrong_texture : Texture
-export var glow_wrong_texture : Texture
-
 export var sound : AudioStream
 var audio_player = AudioStreamPlayer.new()
 
@@ -24,12 +18,26 @@ func _ready():
 func disable(disabled):
 	disabled = disabled
 
-func glow():
-	audio_player.play()
-	set_glow(true)
-	yield(audio_player,"finished")
-	set_glow(false)
-	yield(get_tree().create_timer(0.25), "timeout")
+func glow(audio = audio_player):
+	sync_animation_to_audio("light",audio_player)
+
+func wrong(audio_wrong):
+	sync_animation_to_audio("wrong",audio_wrong)
+
+func sync_animation_to_audio(animation, audio = audio_player):
+	yield(_set_animation(animation+"_on",false),"completed")
+	if(!audio.playing):
+		audio.play()
+	if(audio.playing):
+		yield(audio,"finished")
+	yield(_set_animation(animation+"_off",true),"completed")
+
+func _set_animation(animation, hide_after):
+	$Animator.show()
+	$Animator.play(animation)
+	yield($Animator,"animation_finished")
+	if(hide_after):
+		$Animator.hide()
 
 func countdown():
 	$Animator.show()
@@ -39,23 +47,6 @@ func countdown():
 	$Animator.hide()
 	emit_signal("idle")
 	
-func set_glow(enable):
-	if(enable):
-		texture_normal = glow_texture
-	else:
-		texture_normal = old_normal_texture
-
-func set_wrong(forward):
-	if(forward):
-		texture_normal = wrong_texture;
-		yield(get_tree().create_timer(0.25), "timeout")
-		texture_normal = glow_wrong_texture;
-	else:
-		yield(get_tree().create_timer(0.25), "timeout")
-		texture_normal = wrong_texture;
-		yield(get_tree().create_timer(0.5), "timeout")
-		texture_normal = old_normal_texture
-
 func _on_pressed():
 	emit_signal("hit", id)
 	audio_player.play()
