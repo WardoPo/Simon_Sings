@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Simon Sings"
-config/description="This is a demo showing how a spectrum analyzer can be built using Godot."
-run/main_scene="res://show_spectrum.tscn"
+config/description="This is Work In Progress."
+run/main_scene="res://play_simon.tscn"
 config/icon="res://icon.png"
 
 [audio]
