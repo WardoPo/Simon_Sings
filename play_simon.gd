@@ -40,8 +40,16 @@ func _ready():
 	NoteLabel = find_node("Nota");
 	spectrum = AudioServer.get_bus_effect_instance(3,0)
 	_create_game();
-	#get_node("TextureButton").connect("button_down",self,"_on_TextureButton_button_down");
-	
+
+func _process(delta):
+	if is_listening:
+		notes = [_in_tune_val("Do"),_in_tune_val("Re"),_in_tune_val("Mi"),_in_tune_val("Fa"),_in_tune_val("Sol"),_in_tune_val("La"),_in_tune_val("Si"),_in_tune_val("Do4")]
+		
+		for note in notes:
+			notes[notes.find(note)] = null if stepify(note,0.0001) == 0.000 else stepify(note,0.0001)
+			if notes[notes.find(note)] != null :
+				notes_highest[notes.find(note)] = notes_highest[notes.find(note)] if notes_highest[notes.find(note)] > notes[notes.find(note)] else notes[notes.find(note)]
+
 func _create_game():
 	colorOrder = [];
 	NoteLabel.text="";
@@ -79,10 +87,10 @@ func _show_level(level):
 func _show_note(note):
 	NoteLabel.text = note
 	yield(get_tree().create_timer(0.5),"timeout");
-	NoteLabel.text=""
-	
+	NoteLabel.text=""	
 
 func _check():
+	_disable_all(true)
 	$Timer.stop()
 	print("PressedOrder:",pressedOrder)
 	var current_index = pressedOrder.size()-1
@@ -94,7 +102,6 @@ func _check():
 	elif !has_lost && !pressedOrder.size()==current_level :
 		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
 		is_listening = true
-		_disable_all(true)
 		yield(get_tree().create_timer(3.0),"timeout")
 		_check_note()
 		_disable_all(false)
@@ -154,18 +161,8 @@ func _on_button_hit(id):
 	pressedOrder.append(id)
 	_check()
 
-
 func _on_Timer_timeout():
 	_lose()
-
-func _process(delta):
-	if is_listening:
-		notes = [_in_tune_val("Do"),_in_tune_val("Re"),_in_tune_val("Mi"),_in_tune_val("Fa"),_in_tune_val("Sol"),_in_tune_val("La"),_in_tune_val("Si"),_in_tune_val("Do4")]
-		
-		for note in notes:
-			notes[notes.find(note)] = null if stepify(note,0.0001) == 0.000 else stepify(note,0.0001)
-			if notes[notes.find(note)] != null :
-				notes_highest[notes.find(note)] = notes_highest[notes.find(note)] if notes_highest[notes.find(note)] > notes[notes.find(note)] else notes[notes.find(note)]
 
 func _in_tune_val(var note):
 	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note]),ceil(notes_FrBg[note])).length();
