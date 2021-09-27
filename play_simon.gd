@@ -94,16 +94,19 @@ func _check():
 	elif !has_lost && !pressedOrder.size()==current_level :
 		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
 		is_listening = true
+		_disable_all(true)
 		yield(get_tree().create_timer(3.0),"timeout")
+		_check_note()
+		_disable_all(false)
 		is_listening = false
 		$Timer.start(3.0)
 		
 	if !has_lost && pressedOrder.size()==current_level:
 		_win()
 
-func _check_note(note):
-	if note == notesOrder[pressedOrder.size()-1]:
-		$Timer.start(3.0)
+func _check_note():
+	if notes_FrBg.keys()[notes_highest.find(notes_highest.max())] == notesOrder[pressedOrder.size()-1]:
+		pass
 	else:
 		_lose()
 
