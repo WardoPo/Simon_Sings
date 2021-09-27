@@ -12,6 +12,7 @@ export var sound : AudioStream
 var audio_player = AudioStreamPlayer.new()
 
 signal hit(id)
+signal idle()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,14 @@ func glow():
 	yield(audio_player,"finished")
 	set_glow(false)
 	yield(get_tree().create_timer(0.25), "timeout")
+
+func countdown():
+	$Animator.show()
+	$Animator.frame = 0
+	$Animator.play("countdown")
+	yield($Animator,"animation_finished")
+	$Animator.hide()
+	emit_signal("idle")
 	
 func set_glow(enable):
 	if(enable):

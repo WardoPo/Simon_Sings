@@ -102,7 +102,8 @@ func _check():
 	elif !has_lost && !pressedOrder.size()==current_level :
 		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
 		is_listening = true
-		yield(_play_timer(),"completed")
+		get_tree().call_group("Buttons", "countdown")
+		yield(RedButton,"idle")
 		_check_note()
 		_disable_all(false)
 		is_listening = false
@@ -160,12 +161,6 @@ func _set_wrong_all(forward):
 func _on_button_hit(id):
 	pressedOrder.append(id)
 	_check()
-
-func _play_timer():
-	get_tree().call_group("Timer", "show")
-	get_tree().call_group("Timer", "play")
-	yield(get_tree().get_nodes_in_group("Timer"),"animation_finished")
-	get_tree().call_group("Timer", "hide")
 
 func _on_Timer_timeout():
 	_lose()

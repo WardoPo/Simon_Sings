@@ -76,7 +76,7 @@ animations = [ {
 "speed": 2.33
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
 "loop": false,
@@ -84,7 +84,7 @@ animations = [ {
 "speed": 2.33
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
 "loop": false,
@@ -160,15 +160,13 @@ wrong_texture = ExtResource( 26 )
 glow_wrong_texture = ExtResource( 15 )
 sound = ExtResource( 29 )
 
-[node name="RedTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/RedButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/RedButton" groups=[
 "Timer",
 ]]
 visible = false
 position = Vector2( 137.245, 86.9018 )
 frames = SubResource( 1 )
 animation = "countdown"
-frame = 6
-playing = true
 
 [node name="YellowButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -197,15 +195,13 @@ wrong_texture = ExtResource( 22 )
 glow_wrong_texture = ExtResource( 24 )
 sound = ExtResource( 30 )
 
-[node name="YellowTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/YellowButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/YellowButton" groups=[
 "Timer",
 ]]
 visible = false
 position = Vector2( 75.0065, 150.164 )
 frames = SubResource( 2 )
 animation = "countdown"
-frame = 6
-playing = true
 
 [node name="BlueButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -236,13 +232,12 @@ wrong_texture = ExtResource( 28 )
 glow_wrong_texture = ExtResource( 25 )
 sound = ExtResource( 3 )
 
-[node name="BlueTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/BlueButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/BlueButton" groups=[
 "Timer",
 ]]
 visible = false
 position = Vector2( 137.74, 92.9117 )
-scale = Vector2( 1, 1 )
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 animation = "countdown"
 
 [node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
@@ -272,15 +267,13 @@ wrong_texture = ExtResource( 27 )
 glow_wrong_texture = ExtResource( 23 )
 sound = ExtResource( 19 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="AspectRatioContainer/Panel/GreenButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/GreenButton" groups=[
 "Timer",
 ]]
 visible = false
 position = Vector2( 75.3873, 150.183 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "countdown"
-frame = 6
-playing = true
 
 [node name="Nota" type="Label" parent="."]
 anchor_left = 0.5
