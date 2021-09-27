@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -31,8 +31,68 @@
 [ext_resource path="res://Recursos/Audio/simon-says-red.mp3" type="AudioStream" id=29]
 [ext_resource path="res://Recursos/Audio/simon-says-yellow.mp3" type="AudioStream" id=30]
 [ext_resource path="res://Recursos/8-BIT WONDER.TTF" type="DynamicFontData" id=31]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (3).png" type="Texture" id=32]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (4).png" type="Texture" id=33]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (2).png" type="Texture" id=34]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (7).png" type="Texture" id=35]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (1).png" type="Texture" id=36]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (5).png" type="Texture" id=37]
+[ext_resource path="res://Recursos/Sing Timer/Blue_Sing (6).png" type="Texture" id=38]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (5).png" type="Texture" id=39]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (6).png" type="Texture" id=40]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (3).png" type="Texture" id=41]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (6).png" type="Texture" id=42]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (1).png" type="Texture" id=43]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (4).png" type="Texture" id=44]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (7).png" type="Texture" id=45]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (2).png" type="Texture" id=46]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (2).png" type="Texture" id=47]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (1).png" type="Texture" id=48]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (3).png" type="Texture" id=49]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (2).png" type="Texture" id=50]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (6).png" type="Texture" id=51]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (4).png" type="Texture" id=52]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (5).png" type="Texture" id=53]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (7).png" type="Texture" id=54]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (1).png" type="Texture" id=55]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (3).png" type="Texture" id=56]
+[ext_resource path="res://Recursos/Sing Timer/Green_Sing (4).png" type="Texture" id=57]
+[ext_resource path="res://Recursos/Sing Timer/Red_Sing (5).png" type="Texture" id=58]
+[ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (7).png" type="Texture" id=59]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 2.33
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 2.33
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 2.33
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 2.33
+} ]
+
+[sub_resource type="DynamicFont" id=5]
 size = 72
 font_data = ExtResource( 31 )
 
@@ -100,6 +160,16 @@ wrong_texture = ExtResource( 26 )
 glow_wrong_texture = ExtResource( 15 )
 sound = ExtResource( 29 )
 
+[node name="RedTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/RedButton" groups=[
+"Timer",
+]]
+visible = false
+position = Vector2( 137.245, 86.9018 )
+frames = SubResource( 1 )
+animation = "countdown"
+frame = 6
+playing = true
+
 [node name="YellowButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
@@ -127,32 +197,15 @@ wrong_texture = ExtResource( 22 )
 glow_wrong_texture = ExtResource( 24 )
 sound = ExtResource( 30 )
 
-[node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
-"Buttons",
+[node name="YellowTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/YellowButton" groups=[
+"Timer",
 ]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -289.0
-margin_top = -194.0
-margin_right = -139.0
-margin_bottom = 106.0
-rect_scale = Vector2( 1.25, 1.25 )
-size_flags_horizontal = 2
-size_flags_vertical = 2
-texture_normal = ExtResource( 10 )
-texture_pressed = ExtResource( 13 )
-texture_click_mask = ExtResource( 7 )
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-id = "Green"
-glow_texture = ExtResource( 17 )
-wrong_texture = ExtResource( 27 )
-glow_wrong_texture = ExtResource( 23 )
-sound = ExtResource( 19 )
+visible = false
+position = Vector2( 75.0065, 150.164 )
+frames = SubResource( 2 )
+animation = "countdown"
+frame = 6
+playing = true
 
 [node name="BlueButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -183,18 +236,64 @@ wrong_texture = ExtResource( 28 )
 glow_wrong_texture = ExtResource( 25 )
 sound = ExtResource( 3 )
 
-[node name="Nota" type="Label" parent="AspectRatioContainer/Panel"]
+[node name="BlueTimer" type="AnimatedSprite" parent="AspectRatioContainer/Panel/BlueButton" groups=[
+"Timer",
+]]
+visible = false
+position = Vector2( 137.74, 92.9117 )
+scale = Vector2( 1, 1 )
+frames = SubResource( 4 )
+animation = "countdown"
+
+[node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
+"Buttons",
+]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -289.0
+margin_top = -194.0
+margin_right = -139.0
+margin_bottom = 106.0
+rect_scale = Vector2( 1.25, 1.25 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 13 )
+texture_click_mask = ExtResource( 7 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+id = "Green"
+glow_texture = ExtResource( 17 )
+wrong_texture = ExtResource( 27 )
+glow_wrong_texture = ExtResource( 23 )
+sound = ExtResource( 19 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AspectRatioContainer/Panel/GreenButton" groups=[
+"Timer",
+]]
+visible = false
+position = Vector2( 75.3873, 150.183 )
+frames = SubResource( 3 )
+animation = "countdown"
+frame = 6
+playing = true
+
+[node name="Nota" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -109.0
-margin_top = -71.1204
+margin_top = -71.1203
 margin_right = 118.0
-margin_bottom = 30.8796
+margin_bottom = 30.8797
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 5 )
 text = "o"
 align = 1
 valign = 1
@@ -207,6 +306,6 @@ one_shot = true
 
 [connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
