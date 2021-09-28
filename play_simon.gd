@@ -1,6 +1,6 @@
 extends Node
 
-var max_levels = 20
+export var max_levels = 20
 var current_level = 0
 
 const colors = ["Red","Yellow","Blue","Green"];
@@ -106,9 +106,9 @@ func _check():
 		is_listening = true
 		get_tree().call_group("Buttons", "countdown")
 		yield(RedButton,"idle")
-		#_check_note()
-		_disable_all(false)
+		_check_note()
 		is_listening = false
+		_disable_all(false)
 		$Timer.start(countdownTime)
 		
 	if !has_lost && pressedOrder.size()==current_level:
