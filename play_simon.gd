@@ -156,4 +156,5 @@ func _on_Timer_timeout():
 	_lose()
 
 func _in_tune_val(var note):
-	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note]),ceil(notes_FrBg[note])).length();
+	#Hz freq adjustment you may want to check this
+	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note])-2,ceil(notes_FrBg[note])+2).length();
