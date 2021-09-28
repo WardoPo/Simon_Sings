@@ -12,6 +12,7 @@ var pressedOrder = [];
 
 var notes=[0,0,0,0,0,0,0,0]
 var notes_highest=[0,0,0,0,0,0,0,0]
+var notes_sampled=[0,0,0,0,0,0,0,0]
 
 var has_won = false;
 var is_listening = false;
@@ -99,33 +100,38 @@ func _check():
 	has_lost = pressedOrder[current_index] != colorOrder[current_index]
 	if has_lost:
 		_lose()
-		print("You Loose, Looser :c")
 		
 	elif !has_lost && !pressedOrder.size()==current_level :
+		print("Expected:",notesOrder[pressedOrder.size()-1])
 		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
-		is_listening = true
-		notes=[0,0,0,0,0,0,0,0]
-		var notes_highest=[0,0,0,0,0,0,0,0]
-		print("Notes Highes Before Check Note",notes_highest)
-		get_tree().call_group("Buttons", "countdown", countdownTime)
-		yield(RedButton,"idle")
-		_check_note()
-		is_listening = false
+		yield(_listen_note(),"completed")
 		_disable_all(false)
 		$Timer.start(countdownTime)
 		
 	if !has_lost && pressedOrder.size()==current_level:
 		_win()
 
+func _listen_note():
+	is_listening = true
+	notes_sampled=[0,0,0,0,0,0,0,0]
+	$Sampler.start()
+	get_tree().call_group("Buttons", "countdown", countdownTime)
+	yield(RedButton,"idle")
+	$Sampler.stop()
+	_check_note()
+	is_listening = false
+
 func _check_note():
-	print("Notes Highes On Check Note",notes_highest)
-	print(notes_FrBg.keys()[notes_highest.find(notes_highest.max())])
-	if notes_FrBg.keys()[notes_highest.find(notes_highest.max())] == notesOrder[pressedOrder.size()-1]:
-		pass
+	print("Sampled:",notes_FrBg.keys()[notes_sampled.find(notes_sampled.max())])
+	print("Comparing:",notesOrder[pressedOrder.size()-1])
+	print("Comparison:",notes_FrBg.keys()[notes_sampled.find(notes_sampled.max())] == notesOrder[pressedOrder.size()-1])
+	if notes_FrBg.keys()[notes_sampled.find(notes_sampled.max())] == notesOrder[pressedOrder.size()-1]:
+		return
 	else:
 		_lose()
 
 func _lose():
+	print("You Loose, Looser :c")
 	_disable_all(true)
 	feedbackPlayer.stream = loseTone;
 	
@@ -163,3 +169,11 @@ func _on_Timer_timeout():
 func _in_tune_val(var note):
 	#Hz freq adjustment you may want to check this
 	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note]),ceil(notes_FrBg[note])).length();
+
+
+func _on_Sampler_timeout():
+	#print(notes_highest)
+	notes_sampled[notes_highest.find(notes_highest.max())] += 1
+	notes=[0,0,0,0,0,0,0,0]
+	notes_highest=[0,0,0,0,0,0,0,0]
+	

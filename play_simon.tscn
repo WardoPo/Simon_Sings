@@ -377,8 +377,12 @@ stream = SubResource( 6 )
 autoplay = true
 bus = "Microphone"
 
+[node name="Sampler" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
