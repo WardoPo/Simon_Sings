@@ -72,18 +72,18 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": true,
+"loop": false,
 "name": "wrong_off",
 "speed": 5.0
 } ]
@@ -100,18 +100,18 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 4.0
 }, {
+"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
-"loop": true,
+"loop": false,
 "name": "wrong_off",
 "speed": 5.0
 } ]
@@ -128,18 +128,18 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
-"loop": true,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
-"loop": true,
+"loop": false,
 "name": "wrong_off",
 "speed": 5.0
 } ]
@@ -156,18 +156,18 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": true,
+"loop": false,
 "name": "wrong_off",
 "speed": 5.0
 } ]

@@ -19,7 +19,7 @@ func disable(disabled):
 	disabled = disabled
 
 func glow(audio = audio_player):
-	yield(sync_animation_to_audio("light",audio_player),"completed")
+	yield(sync_animation_to_audio("light",audio),"completed")
 
 func wrong(audio_wrong):
 	yield(sync_animation_to_audio("wrong",audio_wrong),"completed")
