@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -21,7 +21,13 @@
 [ext_resource path="res://Recursos/Audio/simon-says-green.mp3" type="AudioStream" id=19]
 [ext_resource path="res://Recursos/Audio/win.mp3" type="AudioStream" id=20]
 [ext_resource path="res://Recursos/Audio/wrong.mp3" type="AudioStream" id=21]
+[ext_resource path="res://Recursos/Wrong/Yellow_Wrong.png" type="Texture" id=22]
+[ext_resource path="res://Recursos/Wrong/Green_Wrong.png" type="Texture" id=23]
+[ext_resource path="res://Recursos/Wrong/Green_Wrong_Light.png" type="Texture" id=24]
+[ext_resource path="res://Recursos/Wrong/Blue_Wrong.png" type="Texture" id=25]
 [ext_resource path="res://Recursos/Red.png" type="Texture" id=26]
+[ext_resource path="res://Recursos/Wrong/Blue_Wrong_Light.png" type="Texture" id=27]
+[ext_resource path="res://Recursos/Wrong/Yellow_Wrong_Light.png" type="Texture" id=28]
 [ext_resource path="res://Recursos/Audio/simon-says-red.mp3" type="AudioStream" id=29]
 [ext_resource path="res://Recursos/Audio/simon-says-yellow.mp3" type="AudioStream" id=30]
 [ext_resource path="res://Recursos/8-BIT WONDER.TTF" type="DynamicFontData" id=31]
@@ -66,7 +72,7 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "wrong_on",
 "speed": 5.0
@@ -74,6 +80,11 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "wrong_off",
 "speed": 5.0
 } ]
 
@@ -89,10 +100,20 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
+"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -107,9 +128,19 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "wrong_off",
 "speed": 5.0
 } ]
 
@@ -125,9 +156,19 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "wrong_off",
 "speed": 5.0
 } ]
 
@@ -140,9 +181,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 539.205, 164.205 ],
+"_edit_horizontal_guides_": [ 1400.47, 56.0, 164.627, 436.0 ],
 "_edit_use_anchors_": false,
-"_edit_vertical_guides_": [ -381.902, 410.5, 223.0 ]
+"_edit_vertical_guides_": [ 336.0, 222.902, 607.0 ]
 }
 countdownTime = 10.0
 winTone = ExtResource( 20 )
@@ -181,9 +222,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
+margin_left = -175.7
 margin_top = -304.0
-margin_right = 99.0
+margin_right = 99.3
 margin_bottom = -129.0
 rect_scale = Vector2( 1.25, 1.25 )
 size_flags_horizontal = 2
@@ -202,9 +243,10 @@ sound = ExtResource( 29 )
 "Timer",
 ]]
 visible = false
-position = Vector2( 137.245, 86.9018 )
+position = Vector2( -0.23999, 0 )
 frames = SubResource( 1 )
-animation = "wrong_on"
+animation = "wrong_off"
+centered = false
 
 [node name="YellowButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -213,10 +255,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 95.0
-margin_top = -196.0
-margin_right = 245.0
-margin_bottom = 104.0
+margin_left = 95.0081
+margin_top = -195.373
+margin_right = 245.008
+margin_bottom = 104.627
 rect_scale = Vector2( 1.25, 1.25 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -234,9 +276,10 @@ sound = ExtResource( 30 )
 "Timer",
 ]]
 visible = false
-position = Vector2( 75.0065, 150.164 )
+position = Vector2( -0.00650024, 0 )
 frames = SubResource( 2 )
-animation = "light_on"
+animation = "wrong_off"
+centered = false
 
 [node name="BlueButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -268,9 +311,10 @@ sound = ExtResource( 3 )
 "Timer",
 ]]
 visible = false
-position = Vector2( 137.74, 92.9117 )
+position = Vector2( 0, 1.52588e-05 )
 frames = SubResource( 3 )
-animation = "light_on"
+animation = "wrong_off"
+centered = false
 
 [node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
 "Buttons",
@@ -279,10 +323,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -289.0
-margin_top = -194.0
-margin_right = -139.0
-margin_bottom = 106.0
+margin_left = -289.098
+margin_top = -195.373
+margin_right = -139.098
+margin_bottom = 104.627
 rect_scale = Vector2( 1.25, 1.25 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -300,10 +344,9 @@ sound = ExtResource( 19 )
 "Timer",
 ]]
 visible = false
-position = Vector2( 75.1, 148.564 )
-scale = Vector2( 0.998667, 1 )
 frames = SubResource( 4 )
-animation = "light_on"
+animation = "wrong_off"
+centered = false
 
 [node name="Nota" type="Label" parent="."]
 anchor_left = 0.5
