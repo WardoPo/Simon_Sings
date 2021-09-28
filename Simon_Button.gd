@@ -34,14 +34,16 @@ func sync_animation_to_audio(animation, audio = audio_player):
 
 func _set_animation(animation, hide_after):
 	$Animator.show()
+	$Animator.speed_scale = 1
 	$Animator.play(animation)
 	yield($Animator,"animation_finished")
 	if(hide_after):
 		$Animator.hide()
 
-func countdown():
+func countdown(countdownTime):
 	$Animator.show()
 	$Animator.frame = 0
+	$Animator.speed_scale = 1/countdownTime
 	$Animator.play("countdown")
 	yield($Animator,"animation_finished")
 	$Animator.hide()

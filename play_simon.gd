@@ -46,12 +46,12 @@ func _ready():
 func _process(delta):
 	if is_listening:
 		notes = [_in_tune_val("Do"),_in_tune_val("Re"),_in_tune_val("Mi"),_in_tune_val("Fa"),_in_tune_val("Sol"),_in_tune_val("La"),_in_tune_val("Si"),_in_tune_val("Do4")]
-		
 		for note in notes:
-			notes[notes.find(note)] = null if stepify(note,0.0001) == 0.000 else stepify(note,0.0001)
-			if notes[notes.find(note)] != null :
-				notes_highest[notes.find(note)] = notes_highest[notes.find(note)] if notes_highest[notes.find(note)] > notes[notes.find(note)] else notes[notes.find(note)]
-
+			var index = notes.find(note)
+			notes[index] = null if stepify(note,0.0001) == 0.0000 else stepify(note,0.0001)
+			if notes[index] != null :
+				notes_highest[index] = notes_highest[index] if notes_highest[index] > notes[index] else notes[index]
+	
 func _create_game():
 	colorOrder = [];
 	NoteLabel.text="";
@@ -104,7 +104,10 @@ func _check():
 	elif !has_lost && !pressedOrder.size()==current_level :
 		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
 		is_listening = true
-		get_tree().call_group("Buttons", "countdown")
+		notes=[0,0,0,0,0,0,0,0]
+		var notes_highest=[0,0,0,0,0,0,0,0]
+		print("Notes Highes Before Check Note",notes_highest)
+		get_tree().call_group("Buttons", "countdown", countdownTime)
 		yield(RedButton,"idle")
 		_check_note()
 		is_listening = false
@@ -115,6 +118,8 @@ func _check():
 		_win()
 
 func _check_note():
+	print("Notes Highes On Check Note",notes_highest)
+	print(notes_FrBg.keys()[notes_highest.find(notes_highest.max())])
 	if notes_FrBg.keys()[notes_highest.find(notes_highest.max())] == notesOrder[pressedOrder.size()-1]:
 		pass
 	else:
@@ -157,4 +162,4 @@ func _on_Timer_timeout():
 
 func _in_tune_val(var note):
 	#Hz freq adjustment you may want to check this
-	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note])-2,ceil(notes_FrBg[note])+2).length();
+	return spectrum.get_magnitude_for_frequency_range(floor(notes_FrBg[note]),ceil(notes_FrBg[note])).length();
