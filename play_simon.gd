@@ -43,6 +43,8 @@ func _ready():
 	NoteLabel = find_node("Nota");
 	spectrum = AudioServer.get_bus_effect_instance(3,0)
 	_create_game();
+	$Welcome.popup()
+	#$Welcome.show_modal()
 
 func _process(delta):
 	if is_listening:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -19,8 +19,7 @@
 [ext_resource path="res://Recursos/Green_Light_Up.png" type="Texture" id=17]
 [ext_resource path="res://Recursos/Yellow_Light_Up.png" type="Texture" id=18]
 [ext_resource path="res://Recursos/Audio/simon-says-green.mp3" type="AudioStream" id=19]
-[ext_resource path="res://Recursos/Audio/win.mp3" type="AudioStream" id=20]
-[ext_resource path="res://Recursos/Audio/wrong.mp3" type="AudioStream" id=21]
+[ext_resource path="res://control_simon.gd" type="Script" id=20]
 [ext_resource path="res://Recursos/Wrong/Yellow_Wrong.png" type="Texture" id=22]
 [ext_resource path="res://Recursos/Wrong/Green_Wrong.png" type="Texture" id=23]
 [ext_resource path="res://Recursos/Wrong/Green_Wrong_Light.png" type="Texture" id=24]
@@ -59,6 +58,16 @@
 [ext_resource path="res://Recursos/Sing Timer/Green_Sing (4).png" type="Texture" id=57]
 [ext_resource path="res://Recursos/Sing Timer/Red_Sing (5).png" type="Texture" id=58]
 [ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (7).png" type="Texture" id=59]
+[ext_resource path="res://Recursos/Meter/Half_Step.png" type="Texture" id=60]
+[ext_resource path="res://Recursos/Meter/Note.png" type="Texture" id=61]
+[ext_resource path="res://Recursos/Meter/Step.png" type="Texture" id=62]
+[ext_resource path="res://Recursos/UI Buttons/Play_Pause_Down.png" type="Texture" id=63]
+[ext_resource path="res://Recursos/UI Buttons/Play_Pause.png" type="Texture" id=64]
+[ext_resource path="res://Recursos/UI Buttons/Options_Down.png" type="Texture" id=65]
+[ext_resource path="res://Recursos/UI Buttons/Game_Title.png" type="Texture" id=66]
+[ext_resource path="res://Recursos/UI Buttons/Options.png" type="Texture" id=67]
+
+[sub_resource type="AudioStreamMicrophone" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -72,11 +81,6 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "light_off",
@@ -85,6 +89,11 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": false,
 "name": "wrong_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "wrong_on",
 "speed": 5.0
 } ]
 
@@ -100,11 +109,6 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": false,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
@@ -113,6 +117,11 @@ animations = [ {
 "frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
 "loop": false,
 "name": "wrong_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": false,
+"name": "wrong_on",
 "speed": 5.0
 } ]
 
@@ -128,11 +137,6 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
-"loop": false,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
@@ -141,6 +145,11 @@ animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
 "loop": false,
 "name": "wrong_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
+"loop": false,
+"name": "wrong_on",
 "speed": 5.0
 } ]
 
@@ -156,11 +165,6 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": false,
-"name": "wrong_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
@@ -170,13 +174,24 @@ animations = [ {
 "loop": false,
 "name": "wrong_off",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=5]
 size = 72
 font_data = ExtResource( 31 )
 
-[sub_resource type="AudioStreamMicrophone" id=6]
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 61 ), ExtResource( 60 ), ExtResource( 62 ) ],
+"loop": true,
+"name": "Meter",
+"speed": 5.0
+} ]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -188,8 +203,17 @@ __meta__ = {
 "_edit_vertical_guides_": [ 336.0, 222.902, 607.0 ]
 }
 countdownTime = 10.0
-winTone = ExtResource( 20 )
-loseTone = ExtResource( 21 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 7 )
+autoplay = true
+bus = "Microphone"
+
+[node name="Sampler" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
@@ -350,15 +374,11 @@ frames = SubResource( 4 )
 animation = "wrong_off"
 centered = false
 
-[node name="Nota" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -109.0
-margin_top = -71.1203
-margin_right = 118.0
-margin_bottom = 30.8797
+[node name="Nota" type="Label" parent="AspectRatioContainer"]
+margin_left = 152.0
+margin_top = 324.0
+margin_right = 872.0
+margin_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 5 )
@@ -369,20 +389,89 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 6 )
-autoplay = true
-bus = "Microphone"
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Panel"]
+position = Vector2( -86.9216, 0 )
+frames = SubResource( 6 )
+animation = "Meter"
+frame = 1
 
-[node name="Sampler" type="Timer" parent="."]
-wait_time = 0.2
+[node name="Welcome" type="PopupPanel" parent="."]
+pause_mode = 2
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -223.0
+margin_top = -211.0
+margin_right = 223.0
+margin_bottom = 211.0
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
+[node name="Game_Title" type="Sprite" parent="Welcome"]
+position = Vector2( 235, 55 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 66 )
+
+[node name="Play_PauseButton" type="TextureButton" parent="Welcome"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -223.0
+margin_top = -137.986
+margin_right = 215.0
+margin_bottom = 276.014
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 63 )
+texture_pressed = ExtResource( 64 )
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="TextureButton" parent="Welcome"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -137.986
+margin_right = 434.0
+margin_bottom = 276.014
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 67 )
+texture_pressed = ExtResource( 65 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
+[connection signal="about_to_show" from="Welcome" to="Welcome" method="_on_Welcome_about_to_show"]
+[connection signal="pressed" from="Welcome/Play_PauseButton" to="Welcome/Play_PauseButton" method="_on_Play_PauseButton_pressed"]
