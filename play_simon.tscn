@@ -73,8 +73,8 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
 "loop": false,
-"name": "light_on",
-"speed": 4.0
+"name": "wrong_on",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
@@ -88,8 +88,8 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
 "loop": false,
-"name": "wrong_on",
-"speed": 5.0
+"name": "light_on",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -99,10 +99,10 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
-"name": "light_on",
-"speed": 4.0
+"name": "wrong_on",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
@@ -114,10 +114,10 @@ animations = [ {
 "name": "wrong_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
 "loop": false,
-"name": "wrong_on",
-"speed": 5.0
+"name": "light_on",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -127,10 +127,10 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
 "loop": false,
-"name": "light_on",
-"speed": 4.0
+"name": "wrong_on",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
@@ -142,10 +142,10 @@ animations = [ {
 "name": "wrong_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
 "loop": false,
-"name": "wrong_on",
-"speed": 5.0
+"name": "light_on",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
@@ -155,10 +155,10 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": false,
-"name": "light_on",
-"speed": 4.0
+"name": "wrong_on",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
@@ -170,10 +170,10 @@ animations = [ {
 "name": "wrong_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
 "loop": false,
-"name": "wrong_on",
-"speed": 5.0
+"name": "light_on",
+"speed": 4.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
