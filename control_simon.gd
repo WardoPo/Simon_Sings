@@ -23,5 +23,5 @@ func _on_Play_PauseButton_pressed():
 
 
 func _on_Welcome_about_to_show():
-	get_tree().paused = true
+	#get_tree().paused = true
 	pass # Replace with function body.

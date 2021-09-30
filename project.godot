@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Simon Sings"
 config/description="This is Work In Progress."
-run/main_scene="res://play_simon.tscn"
+run/main_scene="res://splash_screen.tscn"
 config/icon="res://icon.png"
 
 [audio]

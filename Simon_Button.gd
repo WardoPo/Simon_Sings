@@ -10,13 +10,9 @@ signal idle()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	audio_player.bus = "Tones"
 	audio_player.stream = sound;
 	add_child(audio_player)
 	connect("pressed",self,"_on_pressed")
-
-func disable(disabled):
-	disabled = disabled
 
 func glow(audio = audio_player):
 	yield(sync_animation_to_audio("light",audio),"completed")

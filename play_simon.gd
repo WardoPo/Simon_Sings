@@ -43,8 +43,6 @@ func _ready():
 	NoteLabel = find_node("Nota");
 	spectrum = AudioServer.get_bus_effect_instance(3,0)
 	_create_game();
-	$Welcome.popup()
-	#$Welcome.show_modal()
 
 func _process(delta):
 	if is_listening:
@@ -174,8 +172,31 @@ func _in_tune_val(var note):
 
 
 func _on_Sampler_timeout():
-	#print(notes_highest)
+	print(notes_highest)
 	notes_sampled[notes_highest.find(notes_highest.max())] += 1
 	notes=[0,0,0,0,0,0,0,0]
 	notes_highest=[0,0,0,0,0,0,0,0]
-	
+
+func _on_pause():
+	get_tree().paused = !get_tree().paused
+	$PausedMenu.popup()
+
+
+func _on_toggle_pause():
+	var is_paused = get_tree().paused
+	if(is_paused):
+		$PausedMenu.hide()
+	else:
+		$PausedMenu.popup()
+	get_tree().paused = !is_paused
+
+
+func _on_restart():
+	_on_toggle_pause()
+	_create_game()
+
+
+func _on_main_menu():
+	_on_toggle_pause()
+	var main_menu = load("res://splash_screen.tscn")
+	get_tree().change_scene_to(main_menu)
