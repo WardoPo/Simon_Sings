@@ -15,6 +15,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func _on_play():
+	var simon_scene = load("res://play_simon.tscn")
+	get_tree().change_scene_to(simon_scene)
 
 func _on_Play_PauseButton_pressed():
 	get_tree().paused = !get_tree().paused

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -59,8 +59,14 @@
 [ext_resource path="res://Recursos/Sing Timer/Green_Sing (4).png" type="Texture" id=57]
 [ext_resource path="res://Recursos/Sing Timer/Red_Sing (5).png" type="Texture" id=58]
 [ext_resource path="res://Recursos/Sing Timer/Yellow_Sing (7).png" type="Texture" id=59]
+[ext_resource path="res://Recursos/UI Buttons/Resume.png" type="Texture" id=60]
+[ext_resource path="res://Recursos/UI Buttons/Main_Menu_Down.png" type="Texture" id=61]
+[ext_resource path="res://Recursos/UI Buttons/Restart_Text_Down - copia.png" type="Texture" id=62]
 [ext_resource path="res://Recursos/UI Buttons/Play_Pause_Down.png" type="Texture" id=63]
 [ext_resource path="res://Recursos/UI Buttons/Play_Pause.png" type="Texture" id=64]
+[ext_resource path="res://Recursos/UI Buttons/Resume_Down.png" type="Texture" id=65]
+[ext_resource path="res://Recursos/UI Buttons/Main_Menu.png" type="Texture" id=66]
+[ext_resource path="res://Recursos/UI Buttons/Restart_Text.png" type="Texture" id=67]
 
 [sub_resource type="AudioStreamMicrophone" id=1]
 
@@ -81,15 +87,15 @@ animations = [ {
 "name": "light_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
 "loop": false,
 "name": "light_on",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -109,15 +115,15 @@ animations = [ {
 "name": "light_off",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
 "loop": false,
 "name": "light_on",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -137,15 +143,15 @@ animations = [ {
 "name": "light_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
 "loop": false,
 "name": "light_on",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
@@ -165,15 +171,15 @@ animations = [ {
 "name": "light_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
 "loop": false,
 "name": "light_on",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
@@ -408,33 +414,37 @@ __meta__ = {
 
 [node name="PausedMenu" type="PopupPanel" parent="."]
 pause_mode = 2
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -170.0
-margin_top = -161.0
-margin_right = 170.0
-margin_bottom = 161.0
+margin_left = -440.0
+margin_top = -263.0
+margin_right = 440.0
+margin_bottom = 263.0
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausedMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -436.0
+margin_top = -259.0
+margin_right = 436.0
+margin_bottom = 259.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Continue" type="MarginContainer" parent="PausedMenu/VBoxContainer"]
-margin_right = 332.0
-margin_bottom = 102.0
+margin_right = 872.0
+margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
@@ -443,17 +453,32 @@ custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
 [node name="Button" type="Button" parent="PausedMenu/VBoxContainer/Continue"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 316.0
-margin_bottom = 86.0
+margin_right = 856.0
+margin_bottom = 154.0
 custom_fonts/font = SubResource( 7 )
 text = "Continue"
 
+[node name="TextureButton" type="TextureButton" parent="PausedMenu/VBoxContainer/Continue"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 856.0
+margin_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 0.5, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 60 )
+texture_pressed = ExtResource( 65 )
+stretch_mode = 3
+
 [node name="Restart" type="MarginContainer" parent="PausedMenu/VBoxContainer"]
-margin_top = 106.0
-margin_right = 332.0
-margin_bottom = 208.0
+margin_top = 174.0
+margin_right = 872.0
+margin_bottom = 344.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
@@ -462,17 +487,32 @@ custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
 [node name="Button" type="Button" parent="PausedMenu/VBoxContainer/Restart"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 316.0
-margin_bottom = 86.0
+margin_right = 856.0
+margin_bottom = 154.0
 custom_fonts/font = SubResource( 7 )
 text = "Restart"
 
+[node name="TextureButton" type="TextureButton" parent="PausedMenu/VBoxContainer/Restart"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 856.0
+margin_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 0.5, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 67 )
+texture_pressed = ExtResource( 62 )
+stretch_mode = 3
+
 [node name="MainMenu" type="MarginContainer" parent="PausedMenu/VBoxContainer"]
-margin_top = 212.0
-margin_right = 332.0
-margin_bottom = 314.0
+margin_top = 348.0
+margin_right = 872.0
+margin_bottom = 518.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 16
@@ -481,12 +521,26 @@ custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
 [node name="Button" type="Button" parent="PausedMenu/VBoxContainer/MainMenu"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 316.0
-margin_bottom = 86.0
+margin_right = 856.0
+margin_bottom = 154.0
 custom_fonts/font = SubResource( 7 )
 text = "Main Menu"
+
+[node name="TextureButton" type="TextureButton" parent="PausedMenu/VBoxContainer/MainMenu"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 856.0
+margin_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 66 )
+texture_pressed = ExtResource( 61 )
+stretch_mode = 5
 
 [connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
