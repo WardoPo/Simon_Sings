@@ -1,6 +1,7 @@
 extends Node
 
 export var max_levels = 20
+export var countdownTime : float
 var current_level = 0
 
 const colors = ["Red","Yellow","Blue","Green"];
@@ -17,8 +18,6 @@ var notes_sampled=[0,0,0,0,0,0,0]
 var has_won = false;
 var is_listening = false;
 var has_lost = false;
-
-export var countdownTime : float
 
 export var winTone : AudioStream;
 export var loseTone : AudioStream;
@@ -186,17 +185,11 @@ func _in_tune_val(var note):
 		
 	return total_frec;
 
-
 func _on_Sampler_timeout():
 	if notes_highest.find(notes_highest.max()) != 0 :
 		notes_sampled[notes_highest.find(notes_highest.max())] += 1
 	notes=[0,0,0,0,0,0,0]
 	notes_highest=[0,0,0,0,0,0,0]
-
-func _on_pause():
-	get_tree().paused = !get_tree().paused
-	$PausedMenu.popup()
-
 
 func _on_toggle_pause():
 	var is_paused = get_tree().paused

@@ -30,35 +30,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 1328.0
-margin_bottom = 508.0
+[node name="Game Title" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 custom_constants/margin_right = 64
 custom_constants/margin_top = 64
 custom_constants/margin_left = 64
-custom_constants/margin_bottom = 64
+custom_constants/margin_bottom = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Game Title"]
 margin_left = 64.0
 margin_top = 64.0
-margin_right = 1264.0
-margin_bottom = 444.0
+margin_right = 960.0
+margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 512.0
-margin_right = 1328.0
-margin_bottom = 614.0
+[node name="PlayGame" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 474.0
+margin_right = 1024.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 64
@@ -66,11 +66,11 @@ custom_constants/margin_top = 12
 custom_constants/margin_left = 64
 custom_constants/margin_bottom = 12
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/MarginContainer2"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/PlayGame"]
 margin_left = 64.0
 margin_top = 12.0
-margin_right = 1264.0
-margin_bottom = 90.0
+margin_right = 960.0
+margin_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -80,22 +80,23 @@ texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 618.0
-margin_right = 1328.0
+[node name="Menu" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 573.0
+margin_right = 1024.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.56
 custom_constants/margin_right = 64
 custom_constants/margin_top = 12
 custom_constants/margin_left = 64
-custom_constants/margin_bottom = 12
+custom_constants/margin_bottom = 64
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/MarginContainer3"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Menu"]
 margin_left = 64.0
 margin_top = 12.0
-margin_right = 1264.0
-margin_bottom = 90.0
+margin_right = 960.0
+margin_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -105,4 +106,4 @@ texture_pressed = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/TextureButton" to="." method="_on_play"]
+[connection signal="pressed" from="VBoxContainer/PlayGame/TextureButton" to="." method="_on_play"]
