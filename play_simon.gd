@@ -29,6 +29,7 @@ var YellowButton;
 var BlueButton;
 var GreenButton;
 var NoteLabel;
+var LevelLabel;
 
 var spectrum
 
@@ -40,6 +41,7 @@ func _ready():
 	BlueButton = find_node("BlueButton");
 	GreenButton = find_node("GreenButton")
 	NoteLabel = find_node("Nota");
+	LevelLabel = find_node("Level");
 	spectrum = AudioServer.get_bus_effect_instance(3,0)
 	_create_game();
 
@@ -54,7 +56,8 @@ func _process(delta):
 	
 func _create_game():
 	colorOrder = [];
-	NoteLabel.text="";
+	NoteLabel.text=""
+	LevelLabel.text=""
 	randomize();
 	for m in max_levels:
 		colorOrder.append(colors[randi()%4])
@@ -65,12 +68,19 @@ func _start_level(level):
 	pressedOrder = []
 	notesOrder = []
 	current_level = level
+	LevelLabel.text = String(current_level)
 	
 	for m in current_level:
 		notesOrder.append(notes_FrBg.keys()[randi()%7])
+		
+	#Setting Timer Indicator
+	$"Indicator/Timer_Meter".speed_scale = 1/countdownTime
+	$"Indicator/Timer_Meter".frame = 0
 	
-	_show_level(current_level)
+	yield(_show_level(current_level),"completed")
 	$Timer.start(countdownTime)
+	
+	$"Indicator/Timer_Meter".play("countdown")
 
 func _show_level(level):
 	_disable_all(true)
@@ -86,14 +96,10 @@ func _show_level(level):
 				yield(GreenButton.glow(),"completed")
 	_disable_all(false)
 
-#func _show_note(note):
-#	NoteLabel.text = note
-#	yield(get_tree().create_timer(0.5),"timeout");
-#	NoteLabel.text=""	
-
 func _check():
 	_disable_all(true)
 	$Timer.stop()
+	$"Indicator/Timer_Meter".stop()
 	print("PressedOrder:",pressedOrder)
 	var current_index = pressedOrder.size()-1
 	has_lost = pressedOrder[current_index] != colorOrder[current_index]
@@ -102,10 +108,13 @@ func _check():
 		
 	elif !has_lost && !pressedOrder.size()==current_level :
 		print("Expected:",notesOrder[pressedOrder.size()-1])
-#		yield(_show_note(notesOrder[pressedOrder.size()-1]),"completed")
+		#Setting Timer Indicator
+		$"Indicator/Timer_Meter".speed_scale = 1/countdownTime
+		$"Indicator/Timer_Meter".frame = 0
 		yield(_listen_note(notesOrder[pressedOrder.size()-1]),"completed")
 		_disable_all(false)
 		$Timer.start(countdownTime)
+		$"Indicator/Timer_Meter".play("countdown")
 		
 	if !has_lost && pressedOrder.size()==current_level:
 		_win()
@@ -113,12 +122,16 @@ func _check():
 func _listen_note(note):
 	is_listening = true
 	notes_sampled=[0,0,0,0,0,0,0]
-	NoteLabel.text = note #Previous check note
+	NoteLabel.text = note 
+	#Set Tune Indicator
+	$"Indicator/Timer_Meter".speed_scale = 0
+	$"Indicator/Timer_Meter".play("meter")
+	#Play Timer On Buttons
 	get_tree().call_group("Buttons", "countdown", countdownTime)
 	$Sampler.start()
 	yield(RedButton,"idle")
 	$Sampler.stop()
-	NoteLabel.text="" #Previous check note
+	NoteLabel.text=""
 	_check_note()
 	is_listening = false
 
@@ -147,6 +160,7 @@ func _lose():
 	_create_game()
 
 func _win():
+	print("You Win this Level Pogchamp c:")
 	_disable_all(true)
 	feedbackPlayer.stream = winTone;
 	
@@ -193,18 +207,16 @@ func _on_Sampler_timeout():
 
 func _on_toggle_pause():
 	var is_paused = get_tree().paused
-	if(is_paused):
+	get_tree().paused = !is_paused
+	if($PausedMenu.visible):
 		$PausedMenu.hide()
 	else:
 		$PausedMenu.popup()
-	get_tree().paused = !is_paused
-
 
 func _on_restart():
-	_on_toggle_pause()
+	#Stop all Ocurring animations and audio buses
 	_create_game()
-
-
+	
 func _on_main_menu():
 	_on_toggle_pause()
 	var main_menu = load("res://splash_screen.tscn")

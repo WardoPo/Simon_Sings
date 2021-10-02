@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -67,6 +67,18 @@
 [ext_resource path="res://Recursos/UI Buttons/Resume_Down.png" type="Texture" id=65]
 [ext_resource path="res://Recursos/UI Buttons/Main_Menu.png" type="Texture" id=66]
 [ext_resource path="res://Recursos/UI Buttons/Restart_Text.png" type="Texture" id=67]
+[ext_resource path="res://Recursos/UI Buttons/Restart.png" type="Texture" id=68]
+[ext_resource path="res://Recursos/UI Buttons/Restart_Down.png" type="Texture" id=69]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (3).png" type="Texture" id=70]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (1).png" type="Texture" id=71]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (4).png" type="Texture" id=72]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (2).png" type="Texture" id=73]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (5).png" type="Texture" id=74]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (6).png" type="Texture" id=75]
+[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (7).png" type="Texture" id=76]
+[ext_resource path="res://Recursos/Meter/Half_Step.png" type="Texture" id=77]
+[ext_resource path="res://Recursos/Meter/Note.png" type="Texture" id=78]
+[ext_resource path="res://Recursos/Meter/Step.png" type="Texture" id=79]
 
 [sub_resource type="AudioStreamMicrophone" id=1]
 
@@ -77,24 +89,24 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "wrong_on",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
 "loop": false,
 "name": "light_on",
 "speed": 4.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": true,
-"name": "light_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": false,
 "name": "wrong_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "wrong_on",
 "speed": 5.0
 } ]
 
@@ -105,24 +117,24 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
-"loop": false,
-"name": "light_on",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
 "name": "wrong_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 } ]
 
@@ -133,24 +145,24 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "light_on",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
 "loop": false,
 "name": "wrong_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 } ]
 
@@ -161,30 +173,50 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
-"loop": false,
-"name": "light_on",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": false,
 "name": "wrong_on",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "light_on",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
 size = 72
 font_data = ExtResource( 31 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 31 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 31 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 76 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 72 ), ExtResource( 70 ), ExtResource( 73 ), ExtResource( 71 ) ],
+"loop": true,
+"name": "countdown",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 78 ), ExtResource( 77 ), ExtResource( 79 ) ],
+"loop": true,
+"name": "meter",
+"speed": 5.0
+} ]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -376,17 +408,24 @@ margin_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 6 )
-text = "o"
+text = "ut"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pause Button" type="MarginContainer" parent="."]
-margin_right = 271.0
+[node name="Buttons" type="HBoxContainer" parent="."]
+margin_right = 546.0
 margin_bottom = 308.0
 rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause Button" type="MarginContainer" parent="Buttons"]
+margin_right = 271.0
+margin_bottom = 308.0
 custom_constants/margin_right = 48
 custom_constants/margin_top = 48
 custom_constants/margin_left = 48
@@ -395,13 +434,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pause" type="TextureButton" parent="Pause Button"]
+[node name="TextureButton" type="TextureButton" parent="Buttons/Pause Button"]
 margin_left = 48.0
 margin_top = 48.0
 margin_right = 223.0
 margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource( 63 )
 texture_pressed = ExtResource( 64 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart Button" type="MarginContainer" parent="Buttons"]
+margin_left = 275.0
+margin_right = 546.0
+margin_bottom = 308.0
+custom_constants/margin_right = 48
+custom_constants/margin_top = 48
+custom_constants/margin_left = 48
+custom_constants/margin_bottom = 48
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="Buttons/Restart Button"]
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 223.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 68 )
+texture_pressed = ExtResource( 69 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -509,13 +576,57 @@ texture_normal = ExtResource( 66 )
 texture_pressed = ExtResource( 61 )
 stretch_mode = 5
 
+[node name="LevelHUD" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelText" type="Label" parent="LevelHUD"]
+margin_right = 80.0
+margin_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 7 )
+text = "Level"
+
+[node name="Level" type="Label" parent="LevelHUD"]
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 8 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Indicator" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer_Meter" type="AnimatedSprite" parent="Indicator"]
+position = Vector2( -32, -188.961 )
+frames = SubResource( 9 )
+animation = "countdown"
+
 [connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
-[connection signal="pressed" from="Pause Button/Pause" to="." method="_on_toggle_pause"]
+[connection signal="pressed" from="Buttons/Pause Button/TextureButton" to="." method="_on_toggle_pause"]
+[connection signal="pressed" from="Buttons/Restart Button/TextureButton" to="." method="_on_restart"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/Continue/TextureButton" to="." method="_on_toggle_pause"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/Restart/TextureButton" to="." method="_on_restart"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/MainMenu/TextureButton" to="." method="_on_main_menu"]
