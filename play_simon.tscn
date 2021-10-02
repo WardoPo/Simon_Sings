@@ -84,14 +84,14 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
@@ -104,23 +104,23 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
 "loop": false,
-"name": "wrong_off",
-"speed": 5.0
+"name": "countdown",
+"speed": 7.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
@@ -132,22 +132,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
 "loop": false,
-"name": "wrong_off",
-"speed": 5.0
+"name": "countdown",
+"speed": 7.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
@@ -160,22 +160,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
 "loop": false,
-"name": "wrong_off",
-"speed": 5.0
+"name": "countdown",
+"speed": 7.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
@@ -188,10 +188,10 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
 "loop": false,
-"name": "wrong_off",
-"speed": 5.0
+"name": "countdown",
+"speed": 7.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
@@ -245,9 +245,6 @@ __meta__ = {
 stream = SubResource( 1 )
 autoplay = true
 bus = "Microphone"
-
-[node name="Sampler" type="Timer" parent="."]
-wait_time = 0.2
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -619,7 +616,6 @@ position = Vector2( -32, -188.961 )
 frames = SubResource( 9 )
 animation = "countdown"
 
-[connection signal="timeout" from="Sampler" to="." method="_on_Sampler_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
 [connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]

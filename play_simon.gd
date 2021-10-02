@@ -53,7 +53,11 @@ func _process(delta):
 			notes[index] = null if stepify(note,0.001) == 0.000 else stepify(note,0.001)
 			if notes[index] != null :
 				notes_highest[index] = notes_highest[index] if notes_highest[index] > notes[index] else notes[index]
-	
+		if notes_highest.find(notes_highest.max()) != 0 :
+			notes_sampled[notes_highest.find(notes_highest.max())] += 1
+		notes=[0,0,0,0,0,0,0]
+		notes_highest=[0,0,0,0,0,0,0]
+
 func _create_game():
 	colorOrder = [];
 	NoteLabel.text=""
@@ -198,12 +202,6 @@ func _in_tune_val(var note):
 		total_frec += spectrum.get_magnitude_for_frequency_range(floor(octaveHz),ceil(octaveHz)).length()
 		
 	return total_frec;
-
-func _on_Sampler_timeout():
-	if notes_highest.find(notes_highest.max()) != 0 :
-		notes_sampled[notes_highest.find(notes_highest.max())] += 1
-	notes=[0,0,0,0,0,0,0]
-	notes_highest=[0,0,0,0,0,0,0]
 
 func _on_toggle_pause():
 	var is_paused = get_tree().paused
