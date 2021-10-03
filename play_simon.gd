@@ -53,8 +53,26 @@ func _process(delta):
 			notes[index] = null if stepify(note,0.001) == 0.000 else stepify(note,0.001)
 			if notes[index] != null :
 				notes_highest[index] = notes_highest[index] if notes_highest[index] > notes[index] else notes[index]
-		if notes_highest.find(notes_highest.max()) != 0 :
-			notes_sampled[notes_highest.find(notes_highest.max())] += 1
+		
+		var correct_index = notes_FrBg.keys().find(notesOrder[pressedOrder.size()-1])
+		var highest_index = notes_highest.find(notes_highest.max())
+		
+		#Changes the display indicator//Does not account for octaves 
+		if notes_highest[highest_index] != 0 :
+			if highest_index == correct_index:
+				$"Indicator/Timer_Meter".frame = 1
+			elif highest_index < correct_index:
+				$"Indicator/Timer_Meter".flip_h = true
+				$"Indicator/Timer_Meter".frame = 2
+				if correct_index - highest_index > 2:
+					$"Indicator/Timer_Meter".frame = 3
+			elif highest_index > correct_index:
+				$"Indicator/Timer_Meter".flip_h = false
+				$"Indicator/Timer_Meter".frame = 2
+				if highest_index - correct_index > 2:
+					print("Correct Highest Difference",highest_index-correct_index)
+					$"Indicator/Timer_Meter".frame = 3
+			notes_sampled[highest_index] += 1
 		notes=[0,0,0,0,0,0,0]
 		notes_highest=[0,0,0,0,0,0,0]
 
@@ -112,11 +130,11 @@ func _check():
 		
 	elif !has_lost && !pressedOrder.size()==current_level :
 		print("Expected:",notesOrder[pressedOrder.size()-1])
+		yield(_listen_note(notesOrder[pressedOrder.size()-1]),"completed")
+		_disable_all(false)
 		#Setting Timer Indicator
 		$"Indicator/Timer_Meter".speed_scale = 1/countdownTime
 		$"Indicator/Timer_Meter".frame = 0
-		yield(_listen_note(notesOrder[pressedOrder.size()-1]),"completed")
-		_disable_all(false)
 		$Timer.start(countdownTime)
 		$"Indicator/Timer_Meter".play("countdown")
 		
@@ -129,12 +147,11 @@ func _listen_note(note):
 	NoteLabel.text = note 
 	#Set Tune Indicator
 	$"Indicator/Timer_Meter".speed_scale = 0
+	$"Indicator/Timer_Meter".frame = 0
 	$"Indicator/Timer_Meter".play("meter")
 	#Play Timer On Buttons
 	get_tree().call_group("Buttons", "countdown", countdownTime)
-	$Sampler.start()
 	yield(RedButton,"idle")
-	$Sampler.stop()
 	NoteLabel.text=""
 	_check_note()
 	is_listening = false

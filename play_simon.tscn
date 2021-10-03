@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -79,19 +79,20 @@
 [ext_resource path="res://Recursos/Meter/Half_Step.png" type="Texture" id=77]
 [ext_resource path="res://Recursos/Meter/Note.png" type="Texture" id=78]
 [ext_resource path="res://Recursos/Meter/Step.png" type="Texture" id=79]
+[ext_resource path="res://Recursos/Meter/Silence.png" type="Texture" id=80]
 
 [sub_resource type="AudioStreamMicrophone" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "light_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": false,
-"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
@@ -104,23 +105,23 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": false,
-"name": "countdown",
-"speed": 7.0
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
+"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "light_off",
 "speed": 4.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
@@ -132,22 +133,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
 "loop": false,
-"name": "countdown",
-"speed": 7.0
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
+"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "light_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
-"loop": false,
-"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
@@ -160,22 +161,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
 "loop": false,
-"name": "countdown",
-"speed": 7.0
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
+"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "light_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
@@ -188,10 +189,10 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
 "loop": false,
-"name": "countdown",
-"speed": 7.0
+"name": "wrong_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
@@ -212,7 +213,7 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 78 ), ExtResource( 77 ), ExtResource( 79 ) ],
+"frames": [ ExtResource( 80 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 79 ) ],
 "loop": true,
 "name": "meter",
 "speed": 5.0
