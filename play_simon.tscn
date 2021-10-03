@@ -83,6 +83,22 @@
 
 [sub_resource type="AudioStreamMicrophone" id=1]
 
+[sub_resource type="DynamicFont" id=7]
+size = 24
+extra_spacing_top = 16
+extra_spacing_bottom = 8
+font_data = ExtResource( 31 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+extra_spacing_top = 8
+extra_spacing_bottom = 16
+font_data = ExtResource( 31 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 72
+font_data = ExtResource( 31 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
@@ -91,8 +107,8 @@ animations = [ {
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": true,
-"name": "light_off",
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
@@ -106,8 +122,8 @@ animations = [ {
 "speed": 4.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": false,
-"name": "wrong_off",
+"loop": true,
+"name": "light_off",
 "speed": 5.0
 } ]
 
@@ -118,10 +134,10 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "light_off",
-"speed": 4.0
+"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "wrong_off",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
@@ -133,10 +149,10 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "wrong_off",
-"speed": 5.0
+"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -146,9 +162,9 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "light_off",
+"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
@@ -161,9 +177,9 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
-"loop": false,
-"name": "wrong_off",
+"frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "light_off",
 "speed": 5.0
 } ]
 
@@ -174,9 +190,9 @@ animations = [ {
 "name": "countdown",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "light_off",
+"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "wrong_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
@@ -189,22 +205,11 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "wrong_off",
+"frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "light_off",
 "speed": 5.0
 } ]
-
-[sub_resource type="DynamicFont" id=6]
-size = 72
-font_data = ExtResource( 31 )
-
-[sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 31 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 32
-font_data = ExtResource( 31 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -250,9 +255,45 @@ bus = "Microphone"
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="Center" type="AspectRatioContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameContainer" type="VBoxContainer" parent="Center"]
+margin_left = 152.0
+margin_right = 872.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelText" type="Label" parent="Center/GameContainer"]
+margin_right = 720.0
+margin_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 7 )
+text = "Level"
+align = 1
+
+[node name="Level" type="Label" parent="Center/GameContainer"]
+margin_top = 52.0
+margin_right = 720.0
+margin_bottom = 108.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 8 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Center/GameContainer"]
+margin_top = 112.0
+margin_right = 720.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch_mode = 1
@@ -260,25 +301,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="AspectRatioContainer"]
-margin_left = 152.0
-margin_right = 872.0
-margin_bottom = 720.0
+[node name="Panel" type="Panel" parent="Center/GameContainer/AspectRatioContainer"]
+margin_left = 56.0
+margin_right = 664.0
+margin_bottom = 608.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RedButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
+[node name="Nota" type="Label" parent="Center/GameContainer/AspectRatioContainer/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -360.0
+margin_top = -36.0
+margin_right = 360.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 6 )
+text = "ut"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -175.7
-margin_top = -304.0
-margin_right = 99.3
-margin_bottom = -129.0
-rect_scale = Vector2( 1.25, 1.25 )
+margin_left = -136.7
+margin_top = -277.0
+margin_right = 138.3
+margin_bottom = -102.0
 texture_normal = ExtResource( 26 )
 texture_pressed = ExtResource( 2 )
 texture_click_mask = ExtResource( 4 )
@@ -289,7 +348,7 @@ __meta__ = {
 id = "Red"
 sound = ExtResource( 29 )
 
-[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/RedButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/RedButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -298,18 +357,17 @@ frames = SubResource( 2 )
 animation = "wrong_off"
 centered = false
 
-[node name="YellowButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
+[node name="YellowButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 95.0081
-margin_top = -195.373
-margin_right = 245.008
-margin_bottom = 104.627
-rect_scale = Vector2( 1.25, 1.25 )
+margin_left = 97.9935
+margin_top = -147.0
+margin_right = 247.994
+margin_bottom = 153.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture_normal = ExtResource( 6 )
@@ -322,7 +380,7 @@ __meta__ = {
 id = "Yellow"
 sound = ExtResource( 30 )
 
-[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/YellowButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/YellowButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -331,20 +389,19 @@ frames = SubResource( 3 )
 animation = "wrong_off"
 centered = false
 
-[node name="BlueButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
+[node name="BlueButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = 75.9999
-margin_right = 99.0
-margin_bottom = 264.0
+margin_left = -137.0
+margin_top = 77.9999
+margin_right = 138.0
+margin_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 1.25, 1.25 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture_normal = ExtResource( 12 )
@@ -357,7 +414,7 @@ __meta__ = {
 id = "Blue"
 sound = ExtResource( 3 )
 
-[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/BlueButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/BlueButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -366,18 +423,17 @@ frames = SubResource( 4 )
 animation = "wrong_off"
 centered = false
 
-[node name="GreenButton" type="TextureButton" parent="AspectRatioContainer/Panel" groups=[
+[node name="GreenButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -289.098
-margin_top = -195.373
-margin_right = -139.098
-margin_bottom = 104.627
-rect_scale = Vector2( 1.25, 1.25 )
+margin_left = -250.098
+margin_top = -154.373
+margin_right = -100.098
+margin_bottom = 145.627
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture_normal = ExtResource( 10 )
@@ -390,28 +446,13 @@ __meta__ = {
 id = "Green"
 sound = ExtResource( 19 )
 
-[node name="Animator" type="AnimatedSprite" parent="AspectRatioContainer/Panel/GreenButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/GreenButton" groups=[
 "Timer",
 ]]
 visible = false
 frames = SubResource( 5 )
 animation = "wrong_off"
 centered = false
-
-[node name="Nota" type="Label" parent="AspectRatioContainer"]
-margin_left = 152.0
-margin_top = 324.0
-margin_right = 872.0
-margin_bottom = 396.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
-text = "ut"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 margin_right = 546.0
@@ -574,54 +615,41 @@ texture_normal = ExtResource( 66 )
 texture_pressed = ExtResource( 61 )
 stretch_mode = 5
 
-[node name="LevelHUD" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -40.0
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LevelText" type="Label" parent="LevelHUD"]
-margin_right = 80.0
-margin_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_fonts/font = SubResource( 7 )
-text = "Level"
-
-[node name="Level" type="Label" parent="LevelHUD"]
-margin_top = 20.0
-margin_right = 80.0
-margin_bottom = 52.0
-custom_fonts/font = SubResource( 8 )
-text = "0"
-align = 1
-valign = 1
-
-[node name="Indicator" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -40.0
-margin_top = -40.0
+margin_left = -139.0
+margin_top = -464.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer_Meter" type="AnimatedSprite" parent="Indicator"]
-position = Vector2( -32, -188.961 )
+[node name="Meter" type="TextureRect" parent="MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 107.0
+margin_bottom = 432.0
+texture = ExtResource( 71 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer_Meter" type="AnimatedSprite" parent="MarginContainer/Meter"]
+position = Vector2( 37, 200 )
 frames = SubResource( 9 )
 animation = "countdown"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="hit" from="AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
 [connection signal="pressed" from="Buttons/Pause Button/TextureButton" to="." method="_on_toggle_pause"]
 [connection signal="pressed" from="Buttons/Restart Button/TextureButton" to="." method="_on_restart"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/Continue/TextureButton" to="." method="_on_toggle_pause"]
