@@ -39,7 +39,6 @@ var spectrum
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(feedbackPlayer);
-	TimerMeter = find_node("Timer_Meter");
 	RedButton = find_node("RedButton");
 	YellowButton = find_node("YellowButton");
 	BlueButton = find_node("BlueButton");
@@ -47,6 +46,11 @@ func _ready():
 	NoteLabel = find_node("Nota");
 	LevelLabel = find_node("Level");
 	spectrum = AudioServer.get_bus_effect_instance(3,0)
+	
+	
+	TimerMeter = find_node("TimerMeter");
+	TimerMeter.set_max_value(countdownTime)
+	
 	_create_game();
 
 func _process(delta):
@@ -64,18 +68,23 @@ func _process(delta):
 		#Changes the display indicator//Does not account for octaves 
 		if notes_highest[highest_index] != 0 :
 			if highest_index == correct_index:
-				TimerMeter.frame = 1
+				#TimerMeter.frame = 1
+				pass
 			elif highest_index < correct_index:
-				TimerMeter.flip_h = true
-				TimerMeter.frame = 2
+				#TimerMeter.flip_h = true
+				#TimerMeter.frame = 2
+				pass
 				if correct_index - highest_index > 2:
-					TimerMeter.frame = 3
+					#TimerMeter.frame = 3
+					pass
 			elif highest_index > correct_index:
-				TimerMeter.flip_h = false
-				TimerMeter.frame = 2
+				#TimerMeter.flip_h = false
+				#TimerMeter.frame = 2
+				pass
 				if highest_index - correct_index > 2:
 					print("Correct Highest Difference",highest_index-correct_index)
-					TimerMeter.frame = 3
+					#TimerMeter.frame = 3
+					pass
 			notes_sampled[highest_index] += 1
 		notes=[0,0,0,0,0,0,0]
 		notes_highest=[0,0,0,0,0,0,0]
@@ -100,13 +109,13 @@ func _start_level(level):
 		notesOrder.append(notes_FrBg.keys()[randi()%7])
 		
 	#Setting Timer Indicator
-	TimerMeter.speed_scale = 1/countdownTime
-	TimerMeter.frame = 0
+	##TimerMeter.speed_scale = 1/countdownTime
+	#TimerMeter.frame = 0
 	
 	yield(_show_level(current_level),"completed")
-	$Timer.start(countdownTime)
+	_start_countdown()
 	
-	TimerMeter.play("countdown")
+	#TimerMeter.play("countdown")
 
 func _show_level(level):
 	_disable_all(true)
@@ -137,10 +146,10 @@ func _check():
 		yield(_listen_note(notesOrder[pressedOrder.size()-1]),"completed")
 		_disable_all(false)
 		#Setting Timer Indicator
-		TimerMeter.speed_scale = 1/countdownTime
-		TimerMeter.frame = 0
-		$Timer.start(countdownTime)
-		TimerMeter.play("countdown")
+		#TimerMeter.speed_scale = 1/countdownTime
+		#TimerMeter.frame = 0
+		_start_countdown()
+		#TimerMeter.play("countdown")
 		
 	if !has_lost && pressedOrder.size()==current_level:
 		_win()
@@ -150,9 +159,9 @@ func _listen_note(note):
 	notes_sampled=[0,0,0,0,0,0,0]
 	NoteLabel.text = note 
 	#Set Tune Indicator
-	TimerMeter.speed_scale = 0
-	TimerMeter.frame = 0
-	TimerMeter.play("meter")
+	#TimerMeter.speed_scale = 0
+	#TimerMeter.frame = 0
+	#TimerMeter.play("meter")
 	#Play Timer On Buttons
 	get_tree().call_group("Buttons", "countdown", countdownTime)
 	yield(RedButton,"idle")
@@ -240,3 +249,7 @@ func _on_main_menu():
 	_on_toggle_pause()
 	var main_menu = load("res://splash_screen.tscn")
 	get_tree().change_scene_to(main_menu)
+
+func _start_countdown():
+	$Timer.start(countdownTime)
+	TimerMeter.start()

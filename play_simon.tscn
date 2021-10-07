@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://play_simon.gd" type="Script" id=1]
 [ext_resource path="res://Recursos/Red_Pressed_Down.png" type="Texture" id=2]
@@ -69,17 +69,9 @@
 [ext_resource path="res://Recursos/UI Buttons/Restart_Text.png" type="Texture" id=67]
 [ext_resource path="res://Recursos/UI Buttons/Restart.png" type="Texture" id=68]
 [ext_resource path="res://Recursos/UI Buttons/Restart_Down.png" type="Texture" id=69]
-[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (3).png" type="Texture" id=70]
+[ext_resource path="res://timer_meter.gd" type="Script" id=70]
 [ext_resource path="res://Recursos/Meter/Simon/Meter_Button (1).png" type="Texture" id=71]
-[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (4).png" type="Texture" id=72]
-[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (2).png" type="Texture" id=73]
-[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (5).png" type="Texture" id=74]
-[ext_resource path="res://Recursos/Meter/Simon/Meter_Button (6).png" type="Texture" id=75]
 [ext_resource path="res://Recursos/Meter/Simon/Meter_Button (7).png" type="Texture" id=76]
-[ext_resource path="res://Recursos/Meter/Half_Step.png" type="Texture" id=77]
-[ext_resource path="res://Recursos/Meter/Note.png" type="Texture" id=78]
-[ext_resource path="res://Recursos/Meter/Step.png" type="Texture" id=79]
-[ext_resource path="res://Recursos/Meter/Silence.png" type="Texture" id=80]
 
 [sub_resource type="AudioStreamMicrophone" id=1]
 
@@ -96,19 +88,19 @@ extra_spacing_bottom = 16
 font_data = ExtResource( 31 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 72
+size = 48
 font_data = ExtResource( 31 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
+"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
 "loop": false,
 "name": "wrong_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
-"loop": true,
-"name": "light_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
@@ -121,23 +113,23 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 45 ), ExtResource( 51 ), ExtResource( 58 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 43 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
+"frames": [ ExtResource( 15 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
+"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 28 ), ExtResource( 22 ) ],
 "loop": false,
 "name": "wrong_off",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "light_off",
-"speed": 4.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ) ],
 "loop": false,
@@ -149,22 +141,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 59 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 46 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
+"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 4.0
 } ]
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
+"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 27 ), ExtResource( 25 ) ],
 "loop": false,
 "name": "wrong_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "light_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 27 ) ],
@@ -177,22 +169,22 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 35 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 36 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
+"frames": [ ExtResource( 16 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
+"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
+"loop": false,
+"name": "countdown",
+"speed": 7.0
+}, {
 "frames": [ ExtResource( 24 ), ExtResource( 23 ) ],
 "loop": false,
 "name": "wrong_off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "light_off",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
@@ -205,23 +197,18 @@ animations = [ {
 "name": "light_on",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 54 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 55 ) ],
-"loop": false,
-"name": "countdown",
-"speed": 7.0
+"frames": [ ExtResource( 17 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "light_off",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ ExtResource( 80 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 79 ) ],
-"loop": true,
-"name": "meter",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 76 ), ExtResource( 75 ), ExtResource( 74 ), ExtResource( 72 ), ExtResource( 70 ), ExtResource( 73 ), ExtResource( 71 ) ],
+"frames": [  ],
 "loop": true,
 "name": "countdown",
-"speed": 7.0
+"speed": 5.0
 } ]
 
 [node name="Control" type="Control"]
@@ -254,28 +241,65 @@ bus = "Microphone"
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Center" type="AspectRatioContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameContainer" type="VBoxContainer" parent="Center"]
-margin_left = 152.0
-margin_right = 872.0
-margin_bottom = 720.0
+[node name="GameContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 456.0
+margin_bottom = 776.0
+custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Center/GameContainer"]
-margin_right = 720.0
-margin_bottom = 108.0
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/GameContainer"]
+margin_right = 432.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="LevelText" type="Label" parent="Center/GameContainer/VBoxContainer"]
-margin_right = 720.0
-margin_bottom = 48.0
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/GameContainer/Buttons"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 63 )
+texture_pressed = ExtResource( 64 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/GameContainer/Buttons"]
+margin_left = 64.0
+margin_right = 128.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 68 )
+texture_pressed = ExtResource( 69 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelText" type="Label" parent="MarginContainer/GameContainer"]
+margin_top = 80.0
+margin_right = 432.0
+margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
@@ -283,10 +307,10 @@ custom_fonts/font = SubResource( 2 )
 text = "Level"
 align = 1
 
-[node name="Level" type="Label" parent="Center/GameContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 720.0
-margin_bottom = 108.0
+[node name="Level" type="Label" parent="MarginContainer/GameContainer"]
+margin_top = 144.0
+margin_right = 432.0
+margin_bottom = 200.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 3 )
 text = "0"
@@ -296,10 +320,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Center/GameContainer"]
-margin_top = 112.0
-margin_right = 720.0
-margin_bottom = 720.0
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/GameContainer"]
+margin_top = 216.0
+margin_right = 432.0
+margin_bottom = 658.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch_mode = 1
@@ -307,14 +331,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Center/GameContainer/AspectRatioContainer"]
-margin_left = 56.0
-margin_right = 664.0
-margin_bottom = 608.0
+[node name="Panel" type="Panel" parent="MarginContainer/GameContainer/AspectRatioContainer"]
+margin_left = -5.0
+margin_right = 437.0
+margin_bottom = 442.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Nota" type="Label" parent="Center/GameContainer/AspectRatioContainer/Panel"]
+[node name="Nota" type="Label" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -325,6 +349,7 @@ margin_right = 360.0
 margin_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 1
 custom_fonts/font = SubResource( 4 )
 text = "ut"
 align = 1
@@ -333,17 +358,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RedButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
+[node name="RedButton" type="TextureButton" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -136.7
-margin_top = -277.0
-margin_right = 138.3
-margin_bottom = -102.0
+margin_left = -137.5
+margin_right = 137.5
+margin_bottom = 175.0
 texture_normal = ExtResource( 26 )
 texture_pressed = ExtResource( 2 )
 texture_click_mask = ExtResource( 4 )
@@ -354,7 +376,7 @@ __meta__ = {
 id = "Red"
 sound = ExtResource( 29 )
 
-[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/RedButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel/RedButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -363,17 +385,16 @@ frames = SubResource( 5 )
 animation = "wrong_off"
 centered = false
 
-[node name="YellowButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
+[node name="YellowButton" type="TextureButton" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
-anchor_left = 0.5
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 97.9935
-margin_top = -147.0
-margin_right = 247.994
-margin_bottom = 153.0
+margin_left = -150.0
+margin_top = -150.0
+margin_bottom = 150.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture_normal = ExtResource( 6 )
@@ -386,7 +407,7 @@ __meta__ = {
 id = "Yellow"
 sound = ExtResource( 30 )
 
-[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/YellowButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel/YellowButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -395,17 +416,16 @@ frames = SubResource( 6 )
 animation = "wrong_off"
 centered = false
 
-[node name="BlueButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
+[node name="BlueButton" type="TextureButton" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -137.0
-margin_top = 77.9999
-margin_right = 138.0
-margin_bottom = 266.0
+anchor_bottom = 1.0
+margin_left = -137.5
+margin_top = -188.0
+margin_right = 137.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
@@ -420,7 +440,7 @@ __meta__ = {
 id = "Blue"
 sound = ExtResource( 3 )
 
-[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/BlueButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel/BlueButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -429,17 +449,14 @@ frames = SubResource( 7 )
 animation = "wrong_off"
 centered = false
 
-[node name="GreenButton" type="TextureButton" parent="Center/GameContainer/AspectRatioContainer/Panel" groups=[
+[node name="GreenButton" type="TextureButton" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel" groups=[
 "Buttons",
 ]]
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -250.098
-margin_top = -154.373
-margin_right = -100.098
-margin_bottom = 145.627
+margin_top = -150.0
+margin_right = 150.0
+margin_bottom = 150.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture_normal = ExtResource( 10 )
@@ -452,7 +469,7 @@ __meta__ = {
 id = "Green"
 sound = ExtResource( 19 )
 
-[node name="Animator" type="AnimatedSprite" parent="Center/GameContainer/AspectRatioContainer/Panel/GreenButton" groups=[
+[node name="Animator" type="AnimatedSprite" parent="MarginContainer/GameContainer/AspectRatioContainer/Panel/GreenButton" groups=[
 "Timer",
 ]]
 visible = false
@@ -460,75 +477,43 @@ frames = SubResource( 8 )
 animation = "wrong_off"
 centered = false
 
-[node name="Buttons" type="HBoxContainer" parent="."]
-margin_right = 546.0
-margin_bottom = 308.0
-rect_scale = Vector2( 0.5, 0.5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimatedSprite" type="AnimatedSprite" parent="MarginContainer/GameContainer"]
+position = Vector2( 0, 674 )
+frames = SubResource( 9 )
+animation = "countdown"
 
-[node name="Pause Button" type="MarginContainer" parent="Buttons"]
-margin_right = 271.0
-margin_bottom = 308.0
-custom_constants/margin_right = 48
-custom_constants/margin_top = 48
-custom_constants/margin_left = 48
-custom_constants/margin_bottom = 48
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureButton" type="TextureButton" parent="Buttons/Pause Button"]
-margin_left = 48.0
-margin_top = 48.0
-margin_right = 223.0
-margin_bottom = 260.0
+[node name="TimerMeter" type="TextureProgress" parent="MarginContainer/GameContainer"]
+margin_top = 674.0
+margin_right = 432.0
+margin_bottom = 752.0
+rect_min_size = Vector2( 0, 78 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 63 )
-texture_pressed = ExtResource( 64 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Restart Button" type="MarginContainer" parent="Buttons"]
-margin_left = 275.0
-margin_right = 546.0
-margin_bottom = 308.0
-custom_constants/margin_right = 48
-custom_constants/margin_top = 48
-custom_constants/margin_left = 48
-custom_constants/margin_bottom = 48
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureButton" type="TextureButton" parent="Buttons/Restart Button"]
-margin_left = 48.0
-margin_top = 48.0
-margin_right = 223.0
-margin_bottom = 260.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 68 )
-texture_pressed = ExtResource( 69 )
-stretch_mode = 4
+max_value = 3.0
+step = 0.0
+value = 3.0
+texture_over = ExtResource( 71 )
+texture_progress = ExtResource( 76 )
+fill_mode = 6
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+script = ExtResource( 70 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PausedMenu" type="PopupPanel" parent="."]
 pause_mode = 2
-anchor_left = 0.5
+visible = true
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -440.0
 margin_top = -263.0
-margin_right = 440.0
+margin_right = 400.0
 margin_bottom = 263.0
+size_flags_horizontal = 3
 popup_exclusive = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -543,6 +528,8 @@ margin_left = -436.0
 margin_top = -259.0
 margin_right = 436.0
 margin_bottom = 259.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -570,7 +557,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 60 )
 texture_pressed = ExtResource( 65 )
-stretch_mode = 3
+expand = true
+stretch_mode = 5
 
 [node name="Restart" type="MarginContainer" parent="PausedMenu/VBoxContainer"]
 margin_top = 174.0
@@ -595,7 +583,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 67 )
 texture_pressed = ExtResource( 62 )
-stretch_mode = 3
+expand = true
+stretch_mode = 5
 
 [node name="MainMenu" type="MarginContainer" parent="PausedMenu/VBoxContainer"]
 margin_top = 348.0
@@ -619,45 +608,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 66 )
 texture_pressed = ExtResource( 61 )
+expand = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -139.0
-margin_top = -464.0
-custom_constants/margin_right = 32
-custom_constants/margin_top = 32
-custom_constants/margin_left = 32
-custom_constants/margin_bottom = 32
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Meter" type="TextureRect" parent="MarginContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 107.0
-margin_bottom = 432.0
-texture = ExtResource( 71 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Timer_Meter" type="AnimatedSprite" parent="MarginContainer/Meter"]
-position = Vector2( 37, 200 )
-frames = SubResource( 9 )
-animation = "countdown"
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
-[connection signal="hit" from="Center/GameContainer/AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
-[connection signal="pressed" from="Buttons/Pause Button/TextureButton" to="." method="_on_toggle_pause"]
-[connection signal="pressed" from="Buttons/Restart Button/TextureButton" to="." method="_on_restart"]
+[connection signal="pressed" from="MarginContainer/GameContainer/Buttons/TextureButton" to="." method="_on_toggle_pause"]
+[connection signal="pressed" from="MarginContainer/GameContainer/Buttons/TextureButton2" to="." method="_on_restart"]
+[connection signal="hit" from="MarginContainer/GameContainer/AspectRatioContainer/Panel/RedButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="MarginContainer/GameContainer/AspectRatioContainer/Panel/YellowButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="MarginContainer/GameContainer/AspectRatioContainer/Panel/BlueButton" to="." method="_on_button_hit"]
+[connection signal="hit" from="MarginContainer/GameContainer/AspectRatioContainer/Panel/GreenButton" to="." method="_on_button_hit"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/Continue/TextureButton" to="." method="_on_toggle_pause"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/Restart/TextureButton" to="." method="_on_restart"]
 [connection signal="pressed" from="PausedMenu/VBoxContainer/MainMenu/TextureButton" to="." method="_on_main_menu"]
